@@ -102,7 +102,7 @@ print("Loading | 1%")
 
 -- ESP
 local esp_Enabled      = true
-local esp_Names        = true
+local esp_Names        = false
 local esp_Health       = false
 local esp_WantedLevel  = false
 local esp_distance     = false
@@ -834,28 +834,6 @@ EspSection:addToggle("ESP Enabled", true, function(v)
 end)
 local maxDisance = 5000;
 
-EspSection1:addToggle("ESP Names", true, function(state)
-    esp_Names = state
-end)
-EspSection1:addToggle("ESP Health", nil, function(state)
-    esp_Health = state
-end)
-
-EspSection1:addToggle("ESP Distance", nil, function(state)
-   esp_distance = state
-end)
-EspSection1:addToggle("ESP Boxes", nil, function(state)
-    esp_boxes = state
- end)
-EspSection1:addToggle("ESP Tracers", nil, function(state)
-    esp_tracers = state
-end)
-EspSection1:addToggle("ESP status level", nil, function(state)
-    esp_WantedLevel = state
-end)
-EspSection1:addColorPicker("ESP Main Color", Color3.fromRGB(255, 255, 255), function(s)
-    esp_Main_Colour = s
-end)
 
 wrldSection:addSlider("ClockTime", 0, 0, 23, function(valuex)
     wLighting.ClockTime = valuex
