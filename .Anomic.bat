@@ -105,7 +105,7 @@ local Players  = game:GetService("Players")
 local LPlayer  = Players.LocalPlayer
 local mouse = LPlayer:GetMouse()
 --Mods
-local infiniteStamina = true
+local infiniteStamina = false
 local jumpMode = "Infinite"
 local infiniteJump = true
 local gunSoundSpam = false
