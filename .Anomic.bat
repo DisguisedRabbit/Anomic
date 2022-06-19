@@ -32,7 +32,7 @@ local PlrSection = PLa:addSection("Movement")
 local PlrSectionC = PLa:addSection("Crafter Role")
 local plrApp = PLa:addSection("Appearance")
 local plrAppFE = PLa:addSection("FE Stuff")
-local teamSection = PLa:addSection("Team Changer")
+local teamSection = PLa:addSection("Team Changer (Cooldown)")
 
 -- // Esp Section
 local DisplaySection = Esp:addSection("Display")
@@ -104,7 +104,7 @@ print("LIB Success")
 print("Loading | 1%")
 
 -- ESP
-local esp_Enabled      = true
+local esp_Enabled      = false
 local esp_Names        = false
 local esp_Health       = false
 local esp_WantedLevel  = false
@@ -113,8 +113,8 @@ local esp_boxes        = false
 local esp_tracers      = false
 local esp_tracer_orig  = "Bottom"
 local esp_Main_Colour  = Color3.fromRGB(255, 255, 255)
-local rainbow_char     = true
-local rainbow_hair     = true
+local rainbow_char     = false
+local rainbow_hair     = false
 -- Player
 local CSEvents = game:GetService("ReplicatedStorage"):WaitForChild("_CS.Events")
 local teamList = require(game:GetService("ReplicatedStorage").Client.TeamList)
@@ -126,17 +126,17 @@ local Players  = game:GetService("Players")
 local LPlayer  = Players.LocalPlayer
 local mouse = LPlayer:GetMouse()
 --Mods
-local infiniteStamina = true
+local infiniteStamina = false
 local jumpMode = "Infinite"
-local infiniteJump = true
+local infiniteJump = false
 local gunSoundSpam = false
 local shotgunMod1 = false
 local shotgunMod2 = false
 local Rmod = false
-local speedBypass = true
-local headHitboxSize = 10
+local speedBypass = false
+local headHitboxSize = 5
 local autoStore = false
-local Hitboxes = true
+local Hitboxes = false
 local minHealth = 70
 local AutoHeal = false
 local antiCar = false
@@ -281,9 +281,6 @@ function setTheme()
                        else if _G.ThemeMode == "White" then
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Stam
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.StatNum.TextColor3 = Color3.fromRGB(0, 0, 0)
-                           else if _G.ThemeMode == "???" then
-                           LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(2, 1, 2) -- Cash
-                           end
                        end
                    end
                end
@@ -296,9 +293,6 @@ function setTheme()
                        LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(93, 233, 0) -- Cash
                        else if _G.ThemeMode == "White" then
                            LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cash
-                           else if _G.ThemeMode == "???" then
-                           LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(2, 1, 2) -- Cash
-                           end
                        end
                    end
                end
@@ -570,7 +564,7 @@ print("Loading | 15%")
 ASection1:addToggle("Toggle Hitboxes", nil, function(v)
     Hitboxes = v
 end)
-ASection1:addSlider("Hitbox Size", 1, 0, 1000, function(v)
+ASection1:addSlider("Hitbox Size", 1, 0, 55, function(v)
     headHitboxSize = v
 end)
 ASection2:addToggle("Infinite Shotgun Ammo", nil, function(x)   
@@ -647,8 +641,8 @@ end)
 PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
--- // PlrSection:addDropdown("Infinite Jump Mode", {"Fly", "Infinite", }, function(x)
-    -- // jumpMode = x
+PlrSection:addDropdown("Infinite Jump Mode", {"Fly", "Infinite", }, function(x)
+    jumpMode = x
 end)
 PlrSection:addToggle("Infinite Jump", nil, function(v)
     infiniteJump = v
@@ -683,7 +677,55 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
         disableStam(infiniteStamina)    
     end
 end)
-
+PlrSection:addToggle("Air Swim", nil, function(v)
+    for i, v in next, getconnections(game:GetService("Workspace"):GetPropertyChangedSignal("Gravity")) do
+        v:Disable()
+    end
+    if v then
+        workspace.Gravity = 0
+        local function swimDied()
+            workspace.Gravity = 140            
+        end
+        gravReset = LPlayer.Character:FindFirstChildOfClass('Humanoid').Died:Connect(swimDied)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+        LPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+    else
+        workspace.Gravity = 140
+        if gravReset then
+            gravReset:Disconnect()
+        end
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+        LPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+    end
+end)
 PlrSection:addToggle("Anti Car", nil, function(v)    
     antiCar = v
 end)
@@ -794,6 +836,9 @@ end)
 plrApp:addButton("Respawn" ,function() 
    game:GetService("ReplicatedStorage")["_CS.Events"].PayLoad:FireServer()
 end)
+plrAppFE:addButton("Anti-Arrest / Remove wanted lvl" ,function()   
+    LPlayer.Character.Head.PlayerDisplay.Wanted:Destroy()
+    LPlayer.Character.Wanted:Destroy()
 end)
 plrAppFE:addButton("Remove Team Name" ,function()   
     LPlayer.Character.Head.PlayerDisplay.TeamName:Destroy()
@@ -827,7 +872,7 @@ teamSection:addToggle("Team Sniper", nil, function(v)
 end)
 print("Loading | 25%")
 -- ESP Page
-local backpackDisplay = true
+local backpackDisplay = false
 DisplaySection:addToggle("Display backpacks", nil, function(v)
     backpackDisplay = v
 end)
@@ -837,16 +882,16 @@ end)
 EspSection:addToggle("ESP Enabled", nil, function(v)
     esp_Enabled = v
 end)
-local maxDisance = 3000;
-EspSection:addSlider("Max distance (Helps stop lag)", 100, 0, 3000, function(v)
+local maxDisance = 100;
+EspSection:addSlider("Max distance (Helps stop lag)", 100, 0, 2000, function(v)
     maxDisance = v
 end)
 
-EspSection1:addToggle("ESP Names", nil, function(state)
-    esp_Names = state
-end)
 EspSection1:addToggle("ESP Health", nil, function(state)
     esp_Health = state
+end)
+EspSection1:addToggle("ESP Names", nil, function(state)
+    esp_Names = state
 end)
 EspSection1:addToggle("ESP Distance", nil, function(state)
    esp_distance = state
@@ -862,6 +907,9 @@ EspSection1:addDropdown("Tracer origin", {"Bottom", "Top","Mouse"}, function(t)
 end)
 EspSection1:addToggle("ESP status level", nil, function(state)
     esp_WantedLevel = state
+end)
+EspSection1:addColorPicker("ESP Main Color", Color3.fromRGB(255, 255, 255), function(s)
+    esp_Main_Colour = s
 end)
 
 wrldSection:addSlider("ClockTime", 0, 0, 23, function(valuex)
@@ -884,6 +932,21 @@ wrldSection:addColorPicker("Color Correction", Color3.fromRGB(255, 255, 255), fu
 end)
 wrldSection:addColorPicker("Ambient", Color3.fromRGB(150, 140, 140), function(s)    
     wLighting.Ambient = s    
+end)
+
+MiscEsp:addButton("Printer ESP", function()
+    for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
+        if v:IsA("Model") and v.Name == "Simple Printer" then
+            local a = Instance.new("BoxHandleAdornment")
+            a.Name = v.Name:lower().."_alwayswinAV"
+            a.Parent = v.hitbox
+            a.Adornee = v
+            a.AlwaysOnTop = true
+            a.ZIndex = 0
+            a.Transparency = 0.3
+            a.Color = BrickColor.new("Lime green")
+        end
+    end
 end)
 
 MiscEsp:addButton("Gun ESP", function()
@@ -924,8 +987,17 @@ end)
 specificSection:addButton("Reset Camera", function()    
     workspace.Camera.CameraSubject = LPlayer.Character.Humanoid       
 end)
-specificSection:addToggle("Highlight Target", nil, function(x)   
+specificSection:addToggle("Highlight Targtet", nil, function(x)   
     targetHighlight = x
+end)
+specificSection:addButton("Get Backpack items", function()    
+    for i,v in pairs(Players:GetChildren()) do
+        if v.Name:match(targetName) then
+            for c,x in pairs(v.Backpack:GetChildren()) do
+                notify("Item", x.Name)
+            end
+        end
+    end  
 end)
 specificSection:addButton("TP cars to target", function()
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
@@ -1024,6 +1096,10 @@ PlrTarget:addButton("Arrest Player", function()
         end
     end
 end)
+local autoArrest = false
+OtherSection0:addToggle("Arrest all", nil, function(state)
+    autoArrest = state
+end)
 
 local currentVehicle;
 coroutine.wrap(function()
@@ -1035,7 +1111,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
+teleSection1:addKeybind("Click TP Keybind", nil, function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
@@ -1117,10 +1193,10 @@ LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(451.888794, -8.47341156, 
 local currentTool = nil 
 local color1 = Color3.fromRGB(255,255,255)
 local color2 = Color3.fromRGB(255,255,255)
-paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,255,0), function(c)
+paintSection:addColorPicker("Primary Color", Color3.fromRGB(255,255,255), function(c)
     color1 = c
 end)
-paintSection:addColorPicker("Secondary Color", Color3.fromRGB(135,0,255), function(c)
+paintSection:addColorPicker("Secondary Color", Color3.fromRGB(255,255,255), function(c)
     color2 = c
 end)
 paintSection:addButton("Paint current tool", function()
@@ -1137,7 +1213,7 @@ local ammoType = ""
 BuySectionAmmo:addDropdown("Ammo", {"9mm", "5.56", "12 Gauge", ".50", ".45 ACP", "5.7x28"}, function(valuex)
     ammoType = valuex
 end)
-BuySectionAmmo:addSlider("Ammo Amount", 1, 0, 10000, function(v)
+BuySectionAmmo:addSlider("Ammo Amount", 1, 0, 200, function(v)
     buyAmmoAmount = v
 end)
 BuySectionAmmo:addButton("Buy ammo", function()
@@ -1145,6 +1221,10 @@ BuySectionAmmo:addButton("Buy ammo", function()
         wait(.3)   
         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Single",nil)
     end
+end)
+local kitSpammerEnabled = false
+BuySectionMisc2:addToggle("Kit Spammer (Requires right role)", nil, function(state)
+    kitSpammerEnabled = state
 end)
 function getTool(t,old)                  
     LPlayer.Character.HumanoidRootPart.CFrame = t.Handle.CFrame * CFrame.new(0,1,0)                  
@@ -1177,6 +1257,9 @@ end
 wepSection:addToggle("Auto Store items", nil, function(state)
     autoStore = state
 end)
+wepSection:addToggle("Backpack Pass", nil, function(state)
+   LPlayer.PlayerScripts.OwnsBackpackPass.Value = state
+end)
 miscSection:addButton("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
@@ -1198,13 +1281,26 @@ CarSection:addToggle("Max Speed", nil, function(state)
         ccar.VehicleSeat.Gear.Value = 2
     end
 end)
-CarSection:addSlider("Car Strength", 1, 0, 100000, function(v)
+CarSection:addSlider("Car Strength", 1, 0, 100, function(v)
     ccar = getCurrentVehicle()      
     ccar.VehicleSeat.Strength.Value = v 
 end)
-CarSection:addSlider("Acceleration", 1, 0, 1000000, function(v)
+CarSection:addSlider("Acceleration", 1, 0, 10000, function(v)
     ccar = getCurrentVehicle()      
     ccar.VehicleSeat.Default.Value = v 
+end)
+CarSection:addButton("Spawn Held Car", function() 
+    CSEvents.SpawnVehicle:FireServer(LPlayer.Character.HumanoidRootPart.CFrame, LPlayer.Character:FindFirstChildWhichIsA("Tool"));     
+end)
+CarSection:addButton("Unlock cars (LOOP)", function() 
+    while wait(1) do
+        for i,v in pairs(game:GetService("Workspace").PlayerVehicles:GetDescendants()) do
+            if v:IsA("VehicleSeat") or v:IsA("Seat") then
+                v.Disabled = false
+                wait(.3)
+            end
+        end
+    end
 end)
 CarSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
@@ -1244,7 +1340,25 @@ CarSection:addButton("Skydive passengers", function()
     seat.Parent:MoveTo(Vector3.new(seat.Parent.PrimaryPart.Position.X, seat.Parent.PrimaryPart.Position.Y + 30000, seat.Parent.PrimaryPart.Position.Z))
 end)
 
-
+boomSection:addButton("Stop Song", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Stop","http://www.roblox.com/asset/?id=0")end)
+boomSection:addButton("Among us Drip", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6065418936")end)
+boomSection:addButton("Rick & Morty", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=7009577773")end)
+boomSection:addButton("Gangsters Paridise", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=2980426576")end)
+boomSection:addButton("Moonlight", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=3309207662j")end)
+boomSection:addButton("Lucid Dreams", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6785290094")end)
+boomSection:addButton("STAY", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6815150969")end)
+boomSection:addButton("Screaming", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=271550300")end)
+boomSection:addButton("End of time", function() 
+    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=1647301137")end)
+    
 print("Loading | 30%")
 
 ThemeSection:addToggle("Theme Enabled", true, function(state)
@@ -1430,6 +1544,21 @@ UIS.InputBegan:connect(function(UserInput)
             end
         end)
     end      
+end)
+UIS.InputBegan:connect(function(process)
+    if infiniteJump and jumpMode == "Fly" then          
+        if UIS:IsKeyDown(Enum.KeyCode.Space) then 
+        repeat wait() 
+            Action(LPlayer.Character.Humanoid, function(self)
+                if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                    Action(self.Parent.HumanoidRootPart, function(self)
+                        self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
+                    end)
+                end
+            end)            
+            until UIS:IsKeyDown(Enum.KeyCode.Space) == false
+        end
+    end
 end)
 --@@@@@
 local MouseDown = false
