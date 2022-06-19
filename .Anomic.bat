@@ -741,13 +741,13 @@ local playerNotify = true
 local maxDisance = 5000;
 
 
-wrldSection:addSlider("ClockTime", 0, 0, 23, function(valuex)
+wrldSection:addSlider("ClockTime", 3, 0, 23, function(valuex)
     wLighting.ClockTime = valuex
 end)
-wrldSection:addSlider("Brightness", 1, 0, 25, function(valuex)
+wrldSection:addSlider("Brightness", 15, 0, 25, function(valuex)
     wLighting.Brightness = valuex
 end)
-wrldSection:addSlider("Exposure", 1, 0, 5, function(valuex)
+wrldSection:addSlider("Exposure", 1.6, 0, 5, function(valuex)
     wLighting.ExposureCompensation = valuex
 end)
 
