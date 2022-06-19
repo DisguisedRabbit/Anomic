@@ -56,7 +56,6 @@ local BuySectionAmmo = Buy:addSection("Ammo Buyer")
 
 -- // Miscellaneous Section
 local miscSection = misc:addSection("Miscellaneous")
-local wepSection = misc:addSection("Miscellaneous Tools")
 local CarSection = misc:addSection("Miscellaneous Vehicle")
 local AnimationSection = misc:addSection("Animations")
 local boomSection = misc:addSection("Boombox Player")
@@ -1104,12 +1103,10 @@ function getCurrentVehicle()
         return LPlayer.Character.Humanoid.SeatPart.Parent        
     end   
 end
-wepSection:addToggle("Auto Store items", nil, function(state)
+miscSection:addToggle("Auto Store items", nil, function(state)
     autoStore = state
 end)
-wepSection:addToggle("Backpack Pass", nil, function(state)
-   LPlayer.PlayerScripts.OwnsBackpackPass.Value = state
-end)
+
 miscSection:addButton("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
