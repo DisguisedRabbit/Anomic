@@ -24,7 +24,7 @@ local Ui = Main:addPage("Settings", 6022860343)
 -- // Sections
 -- // Combat Section
 local ASection1 = CombatTab:addSection("Head Hitboxes")
-local ASection2 = CombatTab:addSection("Shotgun Mods - (Turn off for other weapons)")
+local ASection2 = CombatTab:addSection("Shotgun Mods)")
 local ASection22 = CombatTab:addSection("Other Mods")
 
 -- // Player Section
@@ -32,7 +32,7 @@ local PlrSection = PLa:addSection("Movement")
 local PlrSectionC = PLa:addSection("Crafter Role")
 local plrApp = PLa:addSection("Appearance")
 local plrAppFE = PLa:addSection("FE Stuff")
-local teamSection = PLa:addSection("Team Changer (Cooldown)")
+local teamSection = PLa:addSection("Team Changer")
 
 -- // Esp Section
 local DisplaySection = Esp:addSection("Display")
@@ -63,16 +63,13 @@ local miscSection = misc:addSection("Miscellaneous")
 local wepSection = misc:addSection("Miscellaneous Tools")
 local CarSection = misc:addSection("Miscellaneous Vehicle")
 local AnimationSection = misc:addSection("Animations")
-local boomSection = misc:addSection("Boombox Player (Hold Boombox)")
+local boomSection = misc:addSection("Boombox Player")
 
 -- // UI Section
 local ThemeSection = Ui:addSection("Theme")
 local UISection = Ui:addSection("UI")
 
--- // Credits Section
-local creds = Ui:addSection("Developers: H3#3534, Krypton#3195.")
-local UISection2 = Ui:addSection("Discord: https://discord.gg/jhb37CBT8U")
-local UISection2 = Ui:addSection("Creds: EdgeIY, for the fly")
+
 
 print("Loading | R")
 if syn then
