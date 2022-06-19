@@ -1695,24 +1695,19 @@ game:GetService("RunService").RenderStepped:connect(function()
 end)    
 print("Loading | 70%")
 		
-wait(.5)
-notify("Anomic V", "Scripts made by H3LLL0 and Krypton - Forum name: F A Z E D")
-wait(.3)
-notify("Anomic V", "Info can be found in discord")
-wait(.3)
 bypass()
 setTheme()
 LPlayer.CharacterAdded:Connect(function()
     if _G.Enabled then
-        wait(1)    
+        wait(.1)    
         setTheme()
     end
 end)
 print("Loading | 80%")
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
-    wait(2)
+    wait(0.1)
     bypass()
 end)
-Main:SelectPage(Main.pages[1], true)
+
 
 print("Loading | 100%")
