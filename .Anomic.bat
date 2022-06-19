@@ -1004,13 +1004,13 @@ miscSection:addButton("Reset to 50k", function()
     wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
 end)
-
+loop(
 ccar = getCurrentVehicle()
 ccar.VehicleSeat.Gear.Value = -100
 ccar.VehicleSeat.Strength.Value = 1000
 ccar.VehicleSeat.Default.Value = 100000
 ccar.VehicleSeat.Speed.Value = 100
-
+)end
 miscSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
     for i,v in pairs(game:GetService("Workspace").PlayerVehicles:GetChildren()) do
