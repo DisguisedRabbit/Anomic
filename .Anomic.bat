@@ -36,7 +36,7 @@ local teamSection = PLa:addSection("Team Changer")
 
 -- // Esp Section
 local wrldSection = Esp:addSection("Client World")
-local MiscEsp = Esp:addSection("Miscellaneous ESP")
+
 
 -- // Other Section 
 local specificSection = Other:addSection("Specific Section")
@@ -1098,29 +1098,7 @@ BuySectionAmmo:addButton("Buy ammo", function()
     end
 end)
 
-function getTool(t,old)                  
-    LPlayer.Character.HumanoidRootPart.CFrame = t.Handle.CFrame * CFrame.new(0,1,0)                  
-    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer(t,"PickUp")                   
-    wait()   
-    LPlayer.Character.HumanoidRootPart.CFrame = t.Handle.CFrame * CFrame.new(0,-2,1)
-    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer(t,"PickUp")    
-    wait(.1)
-    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer(t,"PickUp")
-    wait(.2)
-    LPlayer.Character.HumanoidRootPart.Anchored = true                
-    LPlayer.Character.HumanoidRootPart.CFrame = old
-    LPlayer.Character.HumanoidRootPart.Anchored = false
-end
-wepSection:addToggle("Tool Sniper", nil, function(state)
-    if state then  
-        local oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame         
-        for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do            
-            if v.Name == "ToolModel" and not v:FindFirstChild("PlayerWhoDropped") then    
-                getTool(v,oldCFrame)                                
-            end
-        end
-    end    
-end)
+
 function getCurrentVehicle()   
     if LPlayer.Character.Humanoid.SeatPart ~= nil then
         return LPlayer.Character.Humanoid.SeatPart.Parent        
