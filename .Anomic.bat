@@ -56,9 +56,7 @@ local BuySectionAmmo = Buy:addSection("Ammo Buyer")
 
 -- // Miscellaneous Section
 local miscSection = misc:addSection("Miscellaneous")
-local CarSection = misc:addSection("Miscellaneous Vehicle")
-local AnimationSection = misc:addSection("Animations")
-local boomSection = misc:addSection("Boombox Player")
+
 
 -- // UI Section
 local ThemeSection = Ui:addSection("Theme")
@@ -1121,7 +1119,7 @@ miscSection:addToggle("Auto Store items", nil, function(state)
     autoStore = state
 end)
 
-CarSection:addButton("Bring all cars", function() 
+miscSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
     for i,v in pairs(game:GetService("Workspace").PlayerVehicles:GetChildren()) do
         if v:FindFirstChild("VehicleSeat") and v ~= nil and v:FindFirstChild("VehicleSeat").Damage.Value > 1 and not v:FindFirstChild("VehicleSeat"):FindFirstChild("SeatWeld") then
@@ -1150,11 +1148,11 @@ CarSection:addButton("Bring all cars", function()
         end
     end
 end)
-CarSection:addButton("Crash passengers", function() 
+miscSection:addButton("Crash passengers", function() 
     seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
     seat.Parent:MoveTo(Vector3.new(seat.Parent.PrimaryPart.Position.X, workspace.FallenPartsDestroyHeight+1, seat.Parent.PrimaryPart.Position.Z))
 end)
-CarSection:addButton("Skydive passengers", function() 
+miscSection:addButton("Skydive passengers", function() 
     seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
     seat.Parent:MoveTo(Vector3.new(seat.Parent.PrimaryPart.Position.X, seat.Parent.PrimaryPart.Position.Y + 30000, seat.Parent.PrimaryPart.Position.Z))
 end)
