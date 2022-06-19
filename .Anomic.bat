@@ -32,7 +32,7 @@ local PlrSection = PLa:addSection("Movement")
 local PlrSectionC = PLa:addSection("Crafter Role")
 local plrApp = PLa:addSection("Appearance")
 local plrAppFE = PLa:addSection("FE Stuff")
-local teamSection = PLa:addSection("Team Changer (Cooldown)")
+local teamSection = PLa:addSection("Team Changer")
 
 -- // Esp Section
 local DisplaySection = Esp:addSection("Display")
@@ -281,6 +281,9 @@ function setTheme()
                        else if _G.ThemeMode == "White" then
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Stam
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.StatNum.TextColor3 = Color3.fromRGB(0, 0, 0)
+                           else if _G.ThemeMode == "???" then
+                           LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(2, 1, 2) -- Cash
+                           end
                        end
                    end
                end
