@@ -740,16 +740,10 @@ local playerNotify = true
 
 local maxDisance = 5000;
 
+wLighting.ClockTime = 3
+wLighting.Brightness = 15
+wLighting.ExposureCompensation = 1.4
 
-wrldSection:addSlider("ClockTime", 3, 0, 23, function(valuex)
-    wLighting.ClockTime = valuex
-end)
-wrldSection:addSlider("Brightness", 15, 0, 25, function(valuex)
-    wLighting.Brightness = valuex
-end)
-wrldSection:addSlider("Exposure", 1.6, 0, 5, function(valuex)
-    wLighting.ExposureCompensation = valuex
-end)
 
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
         if v:IsA("Model") and v.Name == "ToolModel" then
