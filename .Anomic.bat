@@ -123,21 +123,16 @@ local shotgunMod2 = false
 local Rmod = false
 local speedBypass = true
 local headHitboxSize = 10
-local autoStore = false
 local Hitboxes = true
 local minHealth = 70
 local AutoHeal = false
 local antiCar = false
 local BDelete = false
-local SpeedShotgun = false
-local SpeedSDelay = 0.05
-local shotMulti = false
-local shotMultiAmmount = 1
 local targetHighlight = false
 _G.flySpeed = 1
 _G.JumpHeight = 30
 _G.Enabled = true
-_G.ThemeMode = "Purple" -- Red,Green,White
+_G.ThemeMode = "White" -- Red,Green,Purple
 local folderImpacts = game:GetService("Workspace").RayIgnore.BulletHoles
 
 print("Loading | TeamMod")
@@ -589,13 +584,12 @@ repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false
     end 
 end
 
-PlrSection:addToggle("Infinite Stamina", true, function(v)
-    infiniteStamina = v    
-    disableStam(v)
+PlrSection:addToggle("Infinite Stamina", true, function(v)  
+    disableStam(enabled)
 end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
     if infiniteStamina then    
-        wait(2)
+        wait(0.1)
         disableStam(infiniteStamina)    
     end
 end)
@@ -958,11 +952,6 @@ if currentVehicle ~= nil then
 else 
 LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1620.60095, -65.4234238, -1399.48181, -0.0176989716, 0, -0.99984318, 0, 1, 0, 0.99984318, 0, -0.0176989716)end end)
 
-teleSection2:addButton("Police Station", function()
-if currentVehicle ~= nil then
-currentVehicle:SetPrimaryPartCFrame(CFrame.new(3894.29224, -2.04217577, -3309.31274, 0.819154441, 5.08817486e-08, 0.573573053, -8.20474284e-08, 1, 2.84667561e-08, -0.573573053, -7.03788601e-08, 0.819154441) * CFrame.new(0,5,0))
-else 
-LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3894.29224, -2.04217577, -3309.31274, 0.819154441, 5.08817486e-08, 0.573573053, -8.20474284e-08, 1, 2.84667561e-08, -0.573573053, -7.03788601e-08, 0.819154441)end end)
 teleSection2:addButton("Depository", function()
 if currentVehicle ~= nil then
     currentVehicle:SetPrimaryPartCFrame(CFrame.new(2051.33301, -67.4034195, -1436.65967, 0.989166439, 0, 0.146798298, 0, 1, 0, -0.146798298, 0, 0.989166439) * CFrame.new(0,5,0))
@@ -998,10 +987,10 @@ LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(451.888794, -8.47341156, 
 local currentTool = nil 
 local color1 = Color3.fromRGB(255,255,255)
 local color2 = Color3.fromRGB(255,255,255)
-paintSection:addColorPicker("Primary Color", Color3.fromRGB(255,255,255), function(c)
+paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,255,0), function(c)
     color1 = c
 end)
-paintSection:addColorPicker("Secondary Color", Color3.fromRGB(255,255,255), function(c)
+paintSection:addColorPicker("Secondary Color", Color3.fromRGB(140,0,255), function(c)
     color2 = c
 end)
 paintSection:addButton("Paint current tool", function()
@@ -1048,9 +1037,6 @@ miscSection:addButton("Reset cash to 50k", function()
     wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
 end)
-miscSection:addToggle("Auto Store items", nil, function(state)
-    autoStore = state
-end)
 
 miscSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
@@ -1093,20 +1079,7 @@ end)
 
 print("Loading | 30%")
 
-ThemeSection:addToggle("Theme Enabled", true, function(state)
-    _G.Enabled = state
-    if _G.Enabled then
-        setTheme()
-    end
-end)
-ThemeSection:addDropdown("Theme Mode", {"Purple", "Red", "Green", "White"}, function(valuex)
-    _G.ThemeMode = valuex
-    setTheme()
-end)
-UISection:addKeybind("GUI Keybind", Enum.KeyCode.LeftAlt, function()    
-    Main:toggle()
-    end, function()    
-end)
+
 
 local c = 1
 function zigzag(X)
@@ -1114,17 +1087,6 @@ function zigzag(X)
 end
 coroutine.wrap(function()
     while wait(1) do
-        if autoStore then   
-            pcall(function()                       
-                for i,v in pairs(LPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") and v.Name ~= "Boombox" and v.Name ~= "" then 
-                        LPlayer.Character.Humanoid:EquipTool(v)  
-                        wait(.5)
-                        game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").AddItem:FireServer(v.Name,false)                    
-                    end                              
-                end
-            end)
-        end 
     end
 end)()
 local Character_Parts ={ "Head","LeftHand","LeftLowerArm","LeftUpperArm","RightHand","RightLowerArm","RightUpperArm","UpperTorso","LowerTorso","RightFoot","RightLowerLeg","RightUpperLeg","LeftFoot","LeftLowerLeg","LeftUpperLeg"}
