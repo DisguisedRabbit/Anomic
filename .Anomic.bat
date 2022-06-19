@@ -554,7 +554,7 @@ PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
 
-  function(noclip) 
+  
 PlrSection:addToggle("Noclip", true, function(v)
     if v then
         Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
