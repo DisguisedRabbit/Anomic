@@ -278,6 +278,9 @@ function setTheme()
                        else if _G.ThemeMode == "White" then
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Stam
                            LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.StatNum.TextColor3 = Color3.fromRGB(0, 0, 0)
+                           else if _G.ThemeMode == "???" then
+                           3LPlayer.PlayerGui.MainUIHolder.StaminaBar.Background.Bar.BackgroundColor3 = Color3.fromRGB(23, 25, 41) -- Stam
+                       end
                        end
                    end
                end
@@ -290,6 +293,9 @@ function setTheme()
                        LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(93, 233, 0) -- Cash
                        else if _G.ThemeMode == "White" then
                            LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cash
+                           else if _G.ThemeMode == "???" then
+                           LPlayer.PlayerGui.MainUIHolder.MenuBar.CashDisplay.TextColor3 = Color3.fromRGB(23, 25, 41) -- Cash
+                       end
                        end
                    end
                end
