@@ -1699,13 +1699,11 @@ bypass()
 setTheme()
 LPlayer.CharacterAdded:Connect(function()
     if _G.Enabled then
-        wait(.1)    
         setTheme()
     end
 end)
 print("Loading | 80%")
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
-    wait(0.1)
     bypass()
 end)
 
