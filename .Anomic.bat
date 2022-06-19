@@ -995,7 +995,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-teleSection1:addKeybind("Click TP Keybind", nil, function()
+teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q , function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
@@ -1107,9 +1107,7 @@ BuySectionAmmo:addButton("Buy ammo", function()
     end
 end)
 local kitSpammerEnabled = false
-BuySectionMisc2:addToggle("Kit Spammer (Requires right role)", nil, function(state)
-    kitSpammerEnabled = state
-end)
+
 function getTool(t,old)                  
     LPlayer.Character.HumanoidRootPart.CFrame = t.Handle.CFrame * CFrame.new(0,1,0)                  
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer(t,"PickUp")                   
