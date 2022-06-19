@@ -14,7 +14,6 @@ local Main = library.new(mainName)
 -- // Tabs
 local PLa = Main:addPage("Player", 5012544693)
 local CombatTab = Main:addPage("Combat", 6034509993)
-local Esp = Main:addPage("Visuals", 5012544693)
 local Other = Main:addPage("Others", 6031280883)
 local tele = Main:addPage("Teleportation", 6031280883)
 local Buy = Main:addPage("Guns", 6034509993)
@@ -31,15 +30,10 @@ local plrApp = PLa:addSection("Appearance")
 local plrAppFE = PLa:addSection("FE Stuff")
 local teamSection = PLa:addSection("Team Changer")
 
--- // Esp Section
-local wrldSection = Esp:addSection("Client World")
-
-
 -- // Other Section 
 local specificSection = Other:addSection("Specific Section")
 local PlrTarget = Other:addSection("Other Players")
 local DonateSection = Other:addSection("Donate Section")
-
 
 -- // Teleport Section
 local teleSection1 = tele:addSection("Player")
@@ -741,7 +735,7 @@ local playerNotify = true
 local maxDisance = 5000;
 
 wLighting.ClockTime = 3
-wLighting.Brightness = 15
+wLighting.Brightness = 13
 wLighting.ExposureCompensation = 1.4
 
 
