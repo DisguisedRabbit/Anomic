@@ -35,9 +35,6 @@ local plrAppFE = PLa:addSection("FE Stuff")
 local teamSection = PLa:addSection("Team Changer")
 
 -- // Esp Section
-local DisplaySection = Esp:addSection("Display")
-local EspSection = Esp:addSection("ESP")
-local EspSection1 = Esp:addSection("ESP Configuration")
 local wrldSection = Esp:addSection("Client World")
 local MiscEsp = Esp:addSection("Miscellaneous ESP")
 
@@ -102,7 +99,7 @@ print("Loading | 1%")
 
 -- ESP
 local esp_Enabled      = true
-local esp_Names        = false
+local esp_Names        = true
 local esp_Health       = false
 local esp_WantedLevel  = false
 local esp_distance     = false
@@ -822,16 +819,10 @@ teamSection:addToggle("Team Sniper", nil, function(v)
 end)
 print("Loading | 25%")
 -- ESP Page
-local backpackDisplay = false
-DisplaySection:addToggle("Display backpacks", true, function(v)
-    backpackDisplay = v
-end)
-DisplaySection:addToggle("Join notifications", true, function(v)
-    playerNotify(v)
-end)
-EspSection:addToggle("ESP Enabled", true, function(v)
-    esp_Enabled = v
-end)
+local backpackDisplay = true
+local playerNotify = true
+
+
 local maxDisance = 5000;
 
 
@@ -843,33 +834,6 @@ wrldSection:addSlider("Brightness", 1, 0, 25, function(valuex)
 end)
 wrldSection:addSlider("Exposure", 1, 0, 5, function(valuex)
     wLighting.ExposureCompensation = valuex
-end)
-wrldSection:addToggle("Shadows", nil, function(state)
-    wLighting.GlobalShadows = state
-end)
-wrldSection:addToggle("Color Correction", nil, function(state)
-    wLighting.ColorCorrection.Enabled = state
-end)
-wrldSection:addColorPicker("Color Correction", Color3.fromRGB(255, 255, 255), function(s)    
-    wLighting.ColorCorrection.TintColor = s    
-end)
-wrldSection:addColorPicker("Ambient", Color3.fromRGB(150, 140, 140), function(s)    
-    wLighting.Ambient = s    
-end)
-
-MiscEsp:addButton("Printer ESP", function()
-    for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
-        if v:IsA("Model") and v.Name == "Simple Printer" then
-            local a = Instance.new("BoxHandleAdornment")
-            a.Name = v.Name:lower().."_alwayswinAV"
-            a.Parent = v.hitbox
-            a.Adornee = v
-            a.AlwaysOnTop = true
-            a.ZIndex = 0
-            a.Transparency = 0.3
-            a.Color = BrickColor.new("Lime green")
-        end
-    end
 end)
 
 MiscEsp:addButton("Gun ESP", function()
