@@ -562,7 +562,7 @@ PlrSection:addToggle("Noclip", true, function(v)
         Noclipping:Disconnect()
     end
 end)
-disableStam = enabled
+
 local function disableStam(enabled)
 repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false       
     for i,x in pairs(LPlayer.Character:GetChildren()) do
@@ -575,7 +575,16 @@ repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false
         end 
     end 
 end
-
+PlrSection:addToggle("Infinite Stamina", nil, function(v)
+    infiniteStamina = v    
+    disableStam(v)
+end)
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    if infiniteStamina then    
+        wait(2)
+        disableStam(infiniteStamina)    
+    end
+end)
 
 
 PlrSection:addToggle("Anti Car", nil, function(v)    
