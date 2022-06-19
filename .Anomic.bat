@@ -546,6 +546,7 @@ ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
 ASection1:addSlider("Hitbox Size", 1, 0, 100, function(v)
+    v = 10
     headHitboxSize = v
 end)
 ASection1:addButton("One Shot", function()
