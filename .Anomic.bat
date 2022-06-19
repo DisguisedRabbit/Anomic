@@ -24,7 +24,7 @@ local Ui = Main:addPage("Settings", 6022860343)
 -- // Sections
 -- // Combat Section
 local ASection1 = CombatTab:addSection("Head Hitboxes")
-local ASection2 = CombatTab:addSection("Shotgun Mods)")
+local ASection2 = CombatTab:addSection("Shotgun Mods")
 local ASection22 = CombatTab:addSection("Other Mods")
 
 -- // Player Section
@@ -101,8 +101,8 @@ print("LIB Success")
 print("Loading | 1%")
 
 -- ESP
-local esp_Enabled      = false
-local esp_Names        = false
+local esp_Enabled      = true
+local esp_Names        = true
 local esp_Health       = false
 local esp_WantedLevel  = false
 local esp_distance     = false
@@ -110,8 +110,8 @@ local esp_boxes        = false
 local esp_tracers      = false
 local esp_tracer_orig  = "Bottom"
 local esp_Main_Colour  = Color3.fromRGB(255, 255, 255)
-local rainbow_char     = false
-local rainbow_hair     = false
+local rainbow_char     = true
+local rainbow_hair     = true
 -- Player
 local CSEvents = game:GetService("ReplicatedStorage"):WaitForChild("_CS.Events")
 local teamList = require(game:GetService("ReplicatedStorage").Client.TeamList)
@@ -123,17 +123,17 @@ local Players  = game:GetService("Players")
 local LPlayer  = Players.LocalPlayer
 local mouse = LPlayer:GetMouse()
 --Mods
-local infiniteStamina = false
+local infiniteStamina = true
 local jumpMode = "Infinite"
-local infiniteJump = false
+local infiniteJump = true
 local gunSoundSpam = false
 local shotgunMod1 = false
 local shotgunMod2 = false
 local Rmod = false
-local speedBypass = false
-local headHitboxSize = 5
+local speedBypass = true
+local headHitboxSize = 10
 local autoStore = false
-local Hitboxes = false
+local Hitboxes = true
 local minHealth = 70
 local AutoHeal = false
 local antiCar = false
