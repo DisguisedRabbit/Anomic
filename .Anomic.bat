@@ -1104,10 +1104,7 @@ BuySectionAmmo:addButton("Buy ammo", function()
         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Single",nil)
     end
 end)
-local kitSpammerEnabled = false
-BuySectionMisc2:addToggle("Kit Spammer (Requires right role)", nil, function(state)
-    kitSpammerEnabled = state
-end)
+
 function getTool(t,old)                  
     LPlayer.Character.HumanoidRootPart.CFrame = t.Handle.CFrame * CFrame.new(0,1,0)                  
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer(t,"PickUp")                   
@@ -1359,19 +1356,7 @@ coroutine.wrap(function()
 end)()
 coroutine.wrap(function()
     while wait(.1) do
-        if kitSpammerEnabled then 
-            pcall(function()                        
-                game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer("Repair Kit","Single",nil)
-                wait(.1)
-                for i,v in pairs(LPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") and v.Name == "Repair Kit" then 
-                        LPlayer.Character.Humanoid:EquipTool(v)  
-                        wait(.2) 
-                        game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Dropper:FireServer("Repair Kit","Drop")
-                    end                              
-                end            
-            end)
-        end
+        
     end
 end)()
 coroutine.wrap(function()
