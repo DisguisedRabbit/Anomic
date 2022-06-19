@@ -734,8 +734,8 @@ local playerNotify = true
 
 local maxDisance = 5000;
 
-wLighting.ClockTime = 3
-wLighting.Brightness = 13
+
+wLighting.Brightness = 7
 wLighting.ExposureCompensation = 1.4
 
 
