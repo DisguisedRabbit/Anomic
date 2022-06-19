@@ -24,8 +24,6 @@ local Ui = Main:addPage("Settings", 6022860343)
 -- // Sections
 -- // Combat Section
 local ASection1 = CombatTab:addSection("Head Hitboxes")
-local ASection2 = CombatTab:addSection("Shotgun Mods")
-local ASection22 = CombatTab:addSection("Other Mods")
 
 -- // Player Section
 local PlrSection = PLa:addSection("Movement")
@@ -555,82 +553,14 @@ print("Loading | 15%")
 ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
+ASection1:addSlider("Hitbox Size", 1, 0, 100, function(v)
+    headHitboxSize = v
+end)
 ASection1:addButton("One Shot", function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/YourLocalAnomicPlayer/OneShot-Public/main/Script"), true))()
 end)
-ASection1:addSlider("Hitbox Size", 1, 0, 55, function(v)
-    headHitboxSize = v
-end)
-ASection2:addToggle("Infinite Shotgun Ammo", nil, function(x)   
-    shotgunMod2 = x    
-    bypass()
-end)
-ASection2:addToggle("Ghost Shotgun", nil, function(x)   
-    shotgunMod1 = x    
-    bypass()
-end)
-ASection2:addToggle("Rapid Shotgun", nil, function(x)   
-    SpeedShotgun = x        
-end)
-ASection2:addDropdown("Rapid Mode", {"Maximum", "Medium", "Low"}, function(x)
-    if x == "Maximum" then
-        SpeedSDelay = 0.00001
-        else if x == "Medium" then
-            SpeedSDelay = 0.1
-            else if x == "Low" then
-                SpeedSDelay = 0.4
-            end
-        end
-    end
-end)
-ASection2:addButton("No shotgun reload", function()    
-    for i, v in pairs(itemList) do
-        if v.DataType == "RangedWeapon" and v.Firemode == "Shot" then                         
-            v.ReloadTime = 0.01                       
-        end 
-    end    
-end)
-ASection2:addToggle("Shot Multiplier", nil, function(x)   
-    shotMulti = x        
-end)
-ASection2:addSlider("Shot Ammount", 1, 0, 200, function(v)
-    shotMultiAmmount = v
-end)
-ASection22:addToggle("No Impacts", nil, function(x)   
-    BDelete = x        
-end)
-ASection22:addToggle("No visual recoil", nil, function(x)   
-    Rmod = x
-    bypass()
-end)
-ASection22:addToggle("Gun Silencer", nil, function(x)   
-    for i,v in pairs(LPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") and v ~= nil then
-            if v.Handle:FindFirstChild("ReloadSound") then
-                if v.Handle:FindFirstChild("GunEmpty") and x then                   
-                    v.Handle.Shot.Name = "" 
-                    v.Handle.GunEmpty.Name = "Shot"                                       
-                else
-                    v.Handle.Shot.Name = "GunEmpty" 
-                    v.Handle[""].Name = "Shot"                
-                end
-            else
-                return
-            end
-        end
-    end    
-end)
-ASection22:addToggle("Gun Sound Spam", nil, function(x)   
-    gunSoundSpam = x
-end)
-ASection22:addButton("Remove Flash / Smoke | FE", function()    
-    for i,v in pairs(LPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") and v:FindFirstChild("Main") then
-            v.Main.MuzzleFlash:Destroy()
-            v.Main.Smoke:Destroy()
-        end
-    end
-end)
+
+
 
 PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
