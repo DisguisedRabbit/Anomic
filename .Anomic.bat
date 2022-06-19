@@ -539,7 +539,7 @@ print("Loading | 15%")
 ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
-ASection1:addSlider("Hitbox Size", 10, 0, 100, function(v)
+ASection1:addSlider("Hitbox Size", 10, 0, 1000, function(v)
     
     headHitboxSize = v
 
