@@ -558,7 +558,7 @@ end
 bypass()
 print("Loading | 15%")
 
-ASection1:addToggle("Toggle Hitboxes", nil, function(v)
+ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
 ASection1:addSlider("Hitbox Size", 1, 0, 55, function(v)
@@ -641,10 +641,10 @@ end)
 PlrSection:addDropdown("Infinite Jump Mode", {"Fly", "Infinite", }, function(x)
     jumpMode = x
 end)
-PlrSection:addToggle("Infinite Jump", nil, function(v)
+PlrSection:addToggle("Infinite Jump", true, function(v)
     infiniteJump = v
 end)   
-PlrSection:addToggle("Noclip", nil, function(v)
+PlrSection:addToggle("Noclip", true, function(v)
     if v then
         Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
     else
@@ -664,7 +664,7 @@ repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false
     end 
 end
 
-PlrSection:addToggle("Infinite Stamina", nil, function(v)
+PlrSection:addToggle("Infinite Stamina", true, function(v)
     infiniteStamina = v    
     disableStam(v)
 end)
@@ -678,7 +678,7 @@ end)
 PlrSection:addToggle("Anti Car", nil, function(v)    
     antiCar = v
 end)
-PlrSection:addToggle("Speed Bypass - (Dont walk into sharp terrain)", nil, function(v)    
+PlrSection:addToggle("Speed Bypass", true, function(v)    
     speedBypass = v
 end)
 PlrSection:addToggle("Flight", nil, function(Fly_Switch)
@@ -742,10 +742,10 @@ end)
 plrApp:addColorPicker("Hair Color", Color3.fromRGB(255, 255, 255), function(s)
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipAvatarItem:FireServer("Color",s,"HairColor")
 end)
-plrApp:addToggle("Rainbow Character", nil, function(v)
+plrApp:addToggle("Rainbow Character", true, function(v)
     rainbow_char = v
 end)
-plrApp:addToggle("Rainbow Hair", nil, function(v)
+plrApp:addToggle("Rainbow Hair", true, function(v)
     rainbow_hair = v
 end)
 plrApp:addDropdown("Player Glitch", {"Small", "Larger", }, function(x)
