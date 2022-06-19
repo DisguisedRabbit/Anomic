@@ -1707,5 +1707,5 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     bypass()
 end)
 
-
+Main:SelectPage(Main.pages[1], true)
 print("Loading | 100%")
