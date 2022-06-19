@@ -53,7 +53,6 @@ local teleSection4 = tele:addSection("Miscellaneous")
 -- // Buy Section
 local paintSection = Buy:addSection("Painting")
 local BuySectionAmmo = Buy:addSection("Ammo Buyer")
-local BuySectionMisc2 = Buy:addSection("Misc / Troll")
 
 -- // Miscellaneous Section
 local miscSection = misc:addSection("Miscellaneous")
@@ -1095,7 +1094,7 @@ local ammoType = ""
 BuySectionAmmo:addDropdown("Ammo", {"9mm", "5.56", "12 Gauge", ".50", ".45 ACP", "5.7x28"}, function(valuex)
     ammoType = valuex
 end)
-BuySectionAmmo:addSlider("Ammo Amount", 1, 0, 200, function(v)
+BuySectionAmmo:addSlider("Ammo Amount", 1, 0, 10000, function(v)
     buyAmmoAmount = v
 end)
 BuySectionAmmo:addButton("Buy ammo", function()
@@ -1412,21 +1411,7 @@ UIS.InputBegan:connect(function(UserInput)
         end)
     end      
 end)
-UIS.InputBegan:connect(function(process)
-    if infiniteJump and jumpMode == "Fly" then          
-        if UIS:IsKeyDown(Enum.KeyCode.Space) then 
-        repeat wait() 
-            Action(LPlayer.Character.Humanoid, function(self)
-                if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
-                    Action(self.Parent.HumanoidRootPart, function(self)
-                        self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
-                    end)
-                end
-            end)            
-            until UIS:IsKeyDown(Enum.KeyCode.Space) == false
-        end
-    end
-end)
+
 --@@@@@
 local MouseDown = false
 UIS.InputBegan:Connect(function(a)
