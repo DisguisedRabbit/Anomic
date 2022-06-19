@@ -722,7 +722,7 @@ local maxDisance = 5000;
 
 
 wLighting.Brightness = 6
-wLighting.ExposureCompensation = 1
+wLighting.ExposureCompensation = .7
 
 
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
@@ -883,7 +883,8 @@ coroutine.wrap(function()
         end
     end
 end)()
-teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
+UIS.InputBegan:connect(function(key)
+if infiniteStamina and key.KeyCode == Enum.KeyCode.Q then
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
