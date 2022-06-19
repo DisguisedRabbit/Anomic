@@ -828,7 +828,6 @@ wrldSection:addSlider("Exposure", 1, 0, 5, function(valuex)
     wLighting.ExposureCompensation = valuex
 end)
 
-MiscEsp:addButton("Gun ESP", function()
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
         if v:IsA("Model") and v.Name == "ToolModel" then
             local a = Instance.new("BoxHandleAdornment")
@@ -841,7 +840,7 @@ MiscEsp:addButton("Gun ESP", function()
             a.Color = BrickColor.new("Really red")
         end
     end
-end)
+
 
 local targetName = nil;
 local plrNum = 1
