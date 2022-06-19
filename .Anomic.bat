@@ -883,22 +883,15 @@ coroutine.wrap(function()
         end
     end
 end)()
-table.insert(keyBinding, index+1, {value = "Equip/Unequip Pistol", key = Q})
-local index = nil
-for i,b in ipairs(keyBinding) do
-    if b.value == "Click TP Keybind" then
-        index = i
-        if mouse.Target then 
+teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
+    if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
         else 
         LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)      
         end
     end
-        break
-    end
-end
-
+end)
 --< teleportation
 teleSection2:addButton("Arway", function()
 if currentVehicle ~= nil then
