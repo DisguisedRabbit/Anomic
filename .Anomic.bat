@@ -995,7 +995,7 @@ BuySectionAmmo:addSlider("Ammo Amount", 1, 0, 10000, function(v)
 end)
 BuySectionAmmo:addButton("Buy ammo", function()
     for i = 1, buyAmmoAmount, 1 do
-        wait(.3)   
+        wait(.1)   
         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Single",nil)
     end
 end)
