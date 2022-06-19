@@ -582,7 +582,7 @@ repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false
 end
 
 PlrSection:addToggle("Infinite Stamina", true, function(v)  
-    disableStam(enabled)
+    disableStam(true)
 end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
     if infiniteStamina then    
