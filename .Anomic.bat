@@ -45,7 +45,7 @@ local MiscEsp = Esp:addSection("Miscellaneous ESP")
 local specificSection = Other:addSection("Specific Section")
 local PlrTarget = Other:addSection("Other Players")
 local DonateSection = Other:addSection("Donate Section")
-local OtherSection0 = Other:addSection("Trolling") 
+
 
 -- // Teleport Section
 local teleSection1 = tele:addSection("Player")
@@ -1045,10 +1045,7 @@ PlrTarget:addButton("Arrest Player", function()
         end
     end
 end)
-local autoArrest = false
-OtherSection0:addToggle("Arrest all", nil, function(state)
-    autoArrest = state
-end)
+
 
 local currentVehicle;
 coroutine.wrap(function()
