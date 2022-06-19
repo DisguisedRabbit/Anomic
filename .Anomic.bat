@@ -735,8 +735,8 @@ local playerNotify = true
 local maxDisance = 5000;
 
 
-wLighting.Brightness = 7
-wLighting.ExposureCompensation = 1.4
+wLighting.Brightness = 6
+wLighting.ExposureCompensation = 1
 
 
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
