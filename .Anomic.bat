@@ -822,26 +822,27 @@ end)
 print("Loading | 25%")
 -- ESP Page
 local backpackDisplay = false
-DisplaySection:addToggle("Display backpacks", nil, function(v)
+DisplaySection:addToggle("Display backpacks", true, function(v)
     backpackDisplay = v
 end)
-DisplaySection:addToggle("Join notifications", nil, function(v)
+DisplaySection:addToggle("Join notifications", true, function(v)
     playerNotify(v)
 end)
-EspSection:addToggle("ESP Enabled", nil, function(v)
+EspSection:addToggle("ESP Enabled", true, function(v)
     esp_Enabled = v
 end)
-local maxDisance = 100;
-EspSection:addSlider("Max distance (Helps stop lag)", 100, 0, 2000, function(v)
+local maxDisance = 2000;
+EspSection:addSlider("Max distance", 100, 0, 5000, function(v)
     maxDisance = v
 end)
 
+EspSection1:addToggle("ESP Names", true, function(state)
+    esp_Names = state
+end)
 EspSection1:addToggle("ESP Health", nil, function(state)
     esp_Health = state
 end)
-EspSection1:addToggle("ESP Names", nil, function(state)
-    esp_Names = state
-end)
+
 EspSection1:addToggle("ESP Distance", nil, function(state)
    esp_distance = state
 end)
