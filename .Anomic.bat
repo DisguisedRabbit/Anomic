@@ -1,6 +1,6 @@
 -- // Old anomic gui not the best scripting ill admit, could use more optimising.
 
-local mainName = "Anomic V | 2.7.8" 
+local mainName = "Anomic V | 90210" 
 if game:GetService("CoreGui"):FindFirstChild(mainName) then
     game.CoreGui[mainName]:Destroy()
 end
