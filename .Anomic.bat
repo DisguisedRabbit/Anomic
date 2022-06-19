@@ -577,13 +577,13 @@ repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false
     end 
 end
 
-PlrSection:addToggle("Infinite Stamina", nil, function(v)
-    infiniteStamina = v    
-    disableStam(v)
+PlrSection:addToggle("Infinite Stamina", true, function(v)
+    infiniteStamina = true
+    disableStam(true)
 end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
     if infiniteStamina then    
-        wait(2)
+        wait(0.5)
         disableStam(infiniteStamina)    
     end
 end)
@@ -898,7 +898,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-if (key.KeyCode == Enum.KeyCode.Q then
+teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
