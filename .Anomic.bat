@@ -715,11 +715,11 @@ teamSection:addToggle("Team Sniper", nil, function(v)
 end)
 print("Loading | 25%")
 -- ESP Page
-local backpackDisplay = true
-local playerNotify = true
+local backpackDisplay = true;
+local playerNotify = true;
 local maxDisance = 5000;
-wLighting.Brightness = 6
-wLighting.ExposureCompensation = .7
+wLighting.Brightness = 6;
+wLighting.ExposureCompensation = .7;
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
         if v:IsA("Model") and v.Name == "ToolModel" then
             local a = Instance.new("BoxHandleAdornment")
