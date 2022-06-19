@@ -636,9 +636,7 @@ end)
 PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
-PlrSection:addDropdown("Infinite Jump Mode", {"Fly", "Infinite", }, function(x)
-    jumpMode = x
-end)
+
 PlrSection:addToggle("Infinite Jump", true, function(v)
     infiniteJump = v
 end)   
