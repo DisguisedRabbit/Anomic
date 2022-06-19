@@ -545,9 +545,10 @@ print("Loading | 15%")
 ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
-ASection1:addSlider("Hitbox Size", 1, 0, 100, function(v)
-    v = 10
+ASection1:addSlider("Hitbox Size", 10, 0, 100, function(v)
+    
     headHitboxSize = v
+
 end)
 ASection1:addButton("One Shot", function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/YourLocalAnomicPlayer/OneShot-Public/main/Script"), true))()
