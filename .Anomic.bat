@@ -554,9 +554,7 @@ PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
 
-PlrSection:addToggle("Infinite Jump", true, function(v)
-    infiniteJump = v
-end)   
+  function(noclip) 
 PlrSection:addToggle("Noclip", true, function(v)
     if v then
         Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
@@ -583,7 +581,7 @@ end
 PlrSection:addToggle("Anti Car", nil, function(v)    
     antiCar = v
 end)
-PlrSection:addToggle("Speed Bypass", true, function(v)    
+PlrSection:addToggle("Speed Bypass", nil, function(v)    
     speedBypass = v
 end)
 PlrSection:addToggle("Flight", nil, function(Fly_Switch)
@@ -647,12 +645,7 @@ end)
 plrApp:addColorPicker("Hair Color", Color3.fromRGB(255, 255, 255), function(s)
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipAvatarItem:FireServer("Color",s,"HairColor")
 end)
-plrApp:addToggle("Rainbow Character", true, function(v)
-    rainbow_char = v
-end)
-plrApp:addToggle("Rainbow Hair", true, function(v)
-    rainbow_hair = v
-end)
+
 plrApp:addDropdown("Player Glitch", {"Small", "Larger", }, function(x)
     local H = LPlayer.Character:FindFirstChildWhichIsA('Humanoid')
     if x == "Small" then
@@ -890,7 +883,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
+addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
