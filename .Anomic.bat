@@ -19,7 +19,6 @@ local Other = Main:addPage("Others", 6031280883)
 local tele = Main:addPage("Teleportation", 6031280883)
 local Buy = Main:addPage("Guns", 6034509993)
 local misc = Main:addPage("Miscellaneous", 6034509993)
-local Ui = Main:addPage("Settings", 6022860343)
 
 -- // Sections
 -- // Combat Section
@@ -56,9 +55,7 @@ local BuySectionAmmo = Buy:addSection("Ammo Buyer")
 local miscSection = misc:addSection("Miscellaneous")
 
 
--- // UI Section
-local ThemeSection = Ui:addSection("Theme")
-local UISection = Ui:addSection("UI")
+
 
 
 
@@ -993,7 +990,21 @@ end)
 paintSection:addColorPicker("Secondary Color", Color3.fromRGB(140,0,255), function(c)
     color2 = c
 end)
-paintSection:addButton("Paint current tool", function()
+paintSection:addButton("Paint Joker", function()
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v ~= nil then  
+            currentTool = v
+        end
+    end
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+end)
+paintSection:addColorPicker("Primary Color", Color3.fromRGB(244,145,240), function(c)
+    color1 = c
+end)
+paintSection:addColorPicker("Secondary Color", Color3.fromRGB(214,162,218), function(c)
+    color2 = c
+end)
+paintSection:addButton("Paint Jiggly Puff", function()
     for i,v in pairs(LPlayer.Character:GetChildren()) do
         if v:IsA("Tool") and v ~= nil then  
             currentTool = v
@@ -1030,7 +1041,7 @@ end)
 miscSection:addButton("No void", function()
    game:GetService("Workspace").FallenPartsDestroyHeight = math.huge - math.huge
 end)
-miscSection:addButton("Reset cash to 50k", function()
+miscSection:addButton("Reset to 50k", function()
     for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
         game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
     end
