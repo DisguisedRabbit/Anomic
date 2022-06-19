@@ -883,8 +883,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-UIS.InputBegan:connect(function(key)
-if infiniteStamina and key.KeyCode == Enum.KeyCode.Q then
+teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
