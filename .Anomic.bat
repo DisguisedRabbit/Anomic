@@ -897,7 +897,7 @@ coroutine.wrap(function()
         end
     end
 end)()
-if UserInput.KeyCode == Enum.KeyCode.Q then
+teleSection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
     if mouse.Target then 
         if currentVehicle ~= nil then
             currentVehicle:SetPrimaryPartCFrame(CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z) * CFrame.new(0,-2,0))
@@ -905,7 +905,7 @@ if UserInput.KeyCode == Enum.KeyCode.Q then
         LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)      
         end
     end
-end
+end)
 --< teleportation
 teleSection2:addButton("Arway", function()
 if currentVehicle ~= nil then
