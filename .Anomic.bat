@@ -160,7 +160,8 @@ print("Loading | 10%")
 function notify(title, message)game:GetService("Players").LocalPlayer.PlayerGui.Notify.TimePosition = 0 game:GetService("Players").LocalPlayer.PlayerGui.Notify.Playing = true if not message then require(game:GetService("ReplicatedStorage"):WaitForChild("Client").NotificationHandler):AddToStream(game.Players.LocalPlayer,title) else require(game:GetService("ReplicatedStorage"):WaitForChild("Client").NotificationHandler):AddToStream(game.Players.LocalPlayer,title..": "..message)end end
 function purchaseItem(name)game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(name,"Single",nil)end
 function Action(Object, Function)if Object ~= nil then Function(Object); end end
-function noclip() if LPlayer.Character ~= nil then for _, child in pairs(LPlayer.Character:GetDescendants()) do if child:IsA("BasePart") and child.CanCollide == true then child.CanCollide = false end end end end
+function noclip() if LPlayer.Character ~= nil then for _,
+ child in pairs(LPlayer.Character:GetDescendants()) do if child:IsA("BasePart") and child.CanCollide == true then child.CanCollide = false end end end end
 local function bypass()
     repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false    
         for i, v in next, getconnections(game:GetService("Players").LocalPlayer.Character.DescendantAdded) do
@@ -831,10 +832,7 @@ end)
 EspSection:addToggle("ESP Enabled", true, function(v)
     esp_Enabled = v
 end)
-local maxDisance = 2000;
-EspSection:addSlider("Max distance", 100, 0, 5000, function(v)
-    maxDisance = v
-end)
+local maxDisance = 5000;
 
 EspSection1:addToggle("ESP Names", true, function(state)
     esp_Names = state
@@ -851,9 +849,6 @@ EspSection1:addToggle("ESP Boxes", nil, function(state)
  end)
 EspSection1:addToggle("ESP Tracers", nil, function(state)
     esp_tracers = state
-end)
-EspSection1:addDropdown("Tracer origin", {"Bottom", "Top","Mouse"}, function(t)
-    esp_tracer_orig = t
 end)
 EspSection1:addToggle("ESP status level", nil, function(state)
     esp_WantedLevel = state
