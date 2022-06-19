@@ -1121,33 +1121,6 @@ miscSection:addToggle("Auto Store items", nil, function(state)
     autoStore = state
 end)
 
-    ccar = getCurrentVehicle()  
-    if state then
-        ccar.VehicleSeat.Gear.Value = -100
-    else 
-        ccar.VehicleSeat.Gear.Value = 2
-    end
-
-
-    ccar = getCurrentVehicle()      
-    ccar.VehicleSeat.Strength.Value = 100
-
-   
-    ccar.VehicleSeat.Default.Value = 25000
-
-CarSection:addButton("Spawn Held Car", function() 
-    CSEvents.SpawnVehicle:FireServer(LPlayer.Character.HumanoidRootPart.CFrame, LPlayer.Character:FindFirstChildWhichIsA("Tool"));     
-end)
-CarSection:addButton("Unlock cars (LOOP)", function() 
-    while wait(1) do
-        for i,v in pairs(game:GetService("Workspace").PlayerVehicles:GetDescendants()) do
-            if v:IsA("VehicleSeat") or v:IsA("Seat") then
-                v.Disabled = false
-                wait(.3)
-            end
-        end
-    end
-end)
 CarSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
     for i,v in pairs(game:GetService("Workspace").PlayerVehicles:GetChildren()) do
@@ -1186,25 +1159,7 @@ CarSection:addButton("Skydive passengers", function()
     seat.Parent:MoveTo(Vector3.new(seat.Parent.PrimaryPart.Position.X, seat.Parent.PrimaryPart.Position.Y + 30000, seat.Parent.PrimaryPart.Position.Z))
 end)
 
-boomSection:addButton("Stop Song", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Stop","http://www.roblox.com/asset/?id=0")end)
-boomSection:addButton("Among us Drip", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6065418936")end)
-boomSection:addButton("Rick & Morty", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=7009577773")end)
-boomSection:addButton("Gangsters Paridise", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=2980426576")end)
-boomSection:addButton("Moonlight", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=3309207662j")end)
-boomSection:addButton("Lucid Dreams", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6785290094")end)
-boomSection:addButton("STAY", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=6815150969")end)
-boomSection:addButton("Screaming", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=271550300")end)
-boomSection:addButton("End of time", function() 
-    game:GetService("Players").LocalPlayer.Character.Boombox.ToolModel.PlayMusicEvent:FireServer("Play","http://www.roblox.com/asset/?id=1647301137")end)
-    
+
 print("Loading | 30%")
 
 ThemeSection:addToggle("Theme Enabled", true, function(state)
