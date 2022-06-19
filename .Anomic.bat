@@ -891,7 +891,7 @@ telesection1:addKeybind("Click TP Keybind", Enum.KeyCode.Q, function()
         LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)      
         end
     end
-end)()
+end)
 --< teleportation
 teleSection2:addButton("Arway", function()
 if currentVehicle ~= nil then
