@@ -982,15 +982,15 @@ LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(451.888794, -8.47341156, 
 
 -- Buy Page
 local currentTool = nil 
-local color1 = Color3.fromRGB(255,255,255)
-local color2 = Color3.fromRGB(255,255,255)
+local color1 = Color3.fromRGB(0,255,0)
+local color2 = Color3.fromRGB(140,0,255)
 paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,255,0), function(c)
     color1 = c
 end)
 paintSection:addColorPicker("Secondary Color", Color3.fromRGB(140,0,255), function(c)
     color2 = c
 end)
-paintSection:addButton("Paint Joker", function()
+paintSection:addButton("Paint Item", function()
     for i,v in pairs(LPlayer.Character:GetChildren()) do
         if v:IsA("Tool") and v ~= nil then  
             currentTool = v
@@ -998,20 +998,7 @@ paintSection:addButton("Paint Joker", function()
     end
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
 end)
-paintSection:addColorPicker("Primary Color", Color3.fromRGB(244,145,240), function(c)
-    color1 = c
-end)
-paintSection:addColorPicker("Secondary Color", Color3.fromRGB(214,162,218), function(c)
-    color2 = c
-end)
-paintSection:addButton("Paint Jiggly Puff", function()
-    for i,v in pairs(LPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") and v ~= nil then  
-            currentTool = v
-        end
-    end
-    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
-end)
+
 
 local buyAmmoAmount = 1
 local ammoType = ""
@@ -1460,7 +1447,7 @@ game:GetService("RunService").RenderStepped:connect(function()
     end   
     if rainbow_hair or rainbow_char then      
         local colorx = Color3.fromHSV(zigzag(c),1,1)
-        c = c + .0001
+        c = c + .001
         if rainbow_hair then        
             game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",colorx,"HairColor")
         end
