@@ -1,20 +1,9 @@
 -- // Old anomic gui not the best scripting ill admit, could use more optimising.
 
-local mainName = "Auto Money" 
+local mainName = "Anomic V | 2.7.8" 
 if game:GetService("CoreGui"):FindFirstChild(mainName) then
     game.CoreGui[mainName]:Destroy()
 end
-
-
-
-    for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
-        game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
-    end
-    wait(.2)
-    game:GetService("TeleportService"):Teleport(game.PlaceId)
-    end
-
-
 
 print("Loading | LIB") 
 
@@ -32,6 +21,58 @@ local Buy = Main:addPage("Guns", 6034509993)
 local misc = Main:addPage("Miscellaneous", 6034509993)
 local Ui = Main:addPage("Settings", 6022860343)
 
+-- // Sections
+-- // Combat Section
+local ASection1 = CombatTab:addSection("Head Hitboxes")
+local ASection2 = CombatTab:addSection("Shotgun Mods - (Turn off for other weapons)")
+local ASection22 = CombatTab:addSection("Other Mods")
+
+-- // Player Section
+local PlrSection = PLa:addSection("Movement")
+local PlrSectionC = PLa:addSection("Crafter Role")
+local plrApp = PLa:addSection("Appearance")
+local plrAppFE = PLa:addSection("FE Stuff")
+local teamSection = PLa:addSection("Team Changer (Cooldown)")
+
+-- // Esp Section
+local DisplaySection = Esp:addSection("Display")
+local EspSection = Esp:addSection("ESP")
+local EspSection1 = Esp:addSection("ESP Configuration")
+local wrldSection = Esp:addSection("Client World")
+local MiscEsp = Esp:addSection("Miscellaneous ESP")
+
+-- // Other Section 
+local specificSection = Other:addSection("Specific Section")
+local PlrTarget = Other:addSection("Other Players")
+local DonateSection = Other:addSection("Donate Section")
+local OtherSection0 = Other:addSection("Trolling") 
+
+-- // Teleport Section
+local teleSection1 = tele:addSection("Player")
+local teleSection2 = tele:addSection("Location Teleport")
+local teleSection3 = tele:addSection("Safe spots")
+local teleSection4 = tele:addSection("Miscellaneous")
+
+-- // Buy Section
+local paintSection = Buy:addSection("Painting")
+local BuySectionAmmo = Buy:addSection("Ammo Buyer")
+local BuySectionMisc2 = Buy:addSection("Misc / Troll")
+
+-- // Miscellaneous Section
+local miscSection = misc:addSection("Miscellaneous")
+local wepSection = misc:addSection("Miscellaneous Tools")
+local CarSection = misc:addSection("Miscellaneous Vehicle")
+local AnimationSection = misc:addSection("Animations")
+local boomSection = misc:addSection("Boombox Player (Hold Boombox)")
+
+-- // UI Section
+local ThemeSection = Ui:addSection("Theme")
+local UISection = Ui:addSection("UI")
+
+-- // Credits Section
+local creds = Ui:addSection("Developers: H3#3534, Krypton#3195.")
+local UISection2 = Ui:addSection("Discord: https://discord.gg/jhb37CBT8U")
+local UISection2 = Ui:addSection("Creds: EdgeIY, for the fly")
 
 print("Loading | R")
 if syn then
@@ -62,7 +103,18 @@ chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Positio
 print("LIB Success")
 print("Loading | 1%")
 
-
+-- ESP
+local esp_Enabled      = false
+local esp_Names        = false
+local esp_Health       = false
+local esp_WantedLevel  = false
+local esp_distance     = false
+local esp_boxes        = false
+local esp_tracers      = false
+local esp_tracer_orig  = "Bottom"
+local esp_Main_Colour  = Color3.fromRGB(255, 255, 255)
+local rainbow_char     = false
+local rainbow_hair     = false
 -- Player
 local CSEvents = game:GetService("ReplicatedStorage"):WaitForChild("_CS.Events")
 local teamList = require(game:GetService("ReplicatedStorage").Client.TeamList)
@@ -74,7 +126,26 @@ local Players  = game:GetService("Players")
 local LPlayer  = Players.LocalPlayer
 local mouse = LPlayer:GetMouse()
 --Mods
-
+local infiniteStamina = false
+local jumpMode = "Infinite"
+local infiniteJump = false
+local gunSoundSpam = false
+local shotgunMod1 = false
+local shotgunMod2 = false
+local Rmod = false
+local speedBypass = false
+local headHitboxSize = 5
+local autoStore = false
+local Hitboxes = false
+local minHealth = 70
+local AutoHeal = false
+local antiCar = false
+local BDelete = false
+local SpeedShotgun = false
+local SpeedSDelay = 0.05
+local shotMulti = false
+local shotMultiAmmount = 1
+local targetHighlight = false
 _G.flySpeed = 1
 _G.JumpHeight = 30
 _G.Enabled = true
@@ -273,7 +344,43 @@ function getRoot(char)
     local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
     return rootPart
 end
-
+local function amogus()
+    LPlayer.Character.UpperTorso.Waist:Destroy()
+    local origin = LPlayer.Character.HumanoidRootPart.CFrame
+    LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2114.14697, -83.3234253, -1407.88184)
+    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6431115067)
+    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6164520667)
+    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",Color3.new(1,0,0),"SkinColor")
+    wait()
+    LPlayer.Character.UpperTorso.Waist:Destroy()
+    wait(.5)
+    LPlayer.Character.Head.Anchored = true
+    getRoot(LPlayer.Character).CFrame = origin
+end     
+local function anonymous()
+    local originalskin = LPlayer.Character.Head.Color
+    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",Color3.new(0,0,0),"SkinColor")
+    for i,v in pairs(LPlayer.Character:GetDescendants()) do
+        if v:IsA("Clothing") or v:IsA("ShirtGraphic") then
+            v:Destroy()
+        end
+    end
+    LPlayer.Character.UpperTorso.Waist:Destroy()
+    spawn(function()
+        LPlayer.Character.Humanoid.Changed:Connect(function(p)
+            if p == "Health" then
+                if LPlayer.Character.Humanoid.Health <= 0 then
+                    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",originalskin,"SkinColor")
+                    return
+                end
+            end
+        end)
+        LPlayer.CharacterAdded:Connect(function()
+            game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",originalskin,"SkinColor")
+            return
+        end)
+    end)
+end
 IYMouse = game.Players.LocalPlayer:GetMouse()
 local Players = game.Players
 FLYING = false
@@ -454,8 +561,278 @@ end
 bypass()
 print("Loading | 15%")
 
+ASection1:addToggle("Toggle Hitboxes", nil, function(v)
+    Hitboxes = v
+end)
+ASection1:addSlider("Hitbox Size", 1, 0, 55, function(v)
+    headHitboxSize = v
+end)
+ASection2:addToggle("Infinite Shotgun Ammo", nil, function(x)   
+    shotgunMod2 = x    
+    bypass()
+end)
+ASection2:addToggle("Ghost Shotgun", nil, function(x)   
+    shotgunMod1 = x    
+    bypass()
+end)
+ASection2:addToggle("Rapid Shotgun", nil, function(x)   
+    SpeedShotgun = x        
+end)
+ASection2:addDropdown("Rapid Mode", {"Maximum", "Medium", "Low"}, function(x)
+    if x == "Maximum" then
+        SpeedSDelay = 0.00001
+        else if x == "Medium" then
+            SpeedSDelay = 0.1
+            else if x == "Low" then
+                SpeedSDelay = 0.4
+            end
+        end
+    end
+end)
+ASection2:addButton("No shotgun reload", function()    
+    for i, v in pairs(itemList) do
+        if v.DataType == "RangedWeapon" and v.Firemode == "Shot" then                         
+            v.ReloadTime = 0.01                       
+        end 
+    end    
+end)
+ASection2:addToggle("Shot Multiplier", nil, function(x)   
+    shotMulti = x        
+end)
+ASection2:addSlider("Shot Ammount", 1, 0, 200, function(v)
+    shotMultiAmmount = v
+end)
+ASection22:addToggle("No Impacts", nil, function(x)   
+    BDelete = x        
+end)
+ASection22:addToggle("No visual recoil", nil, function(x)   
+    Rmod = x
+    bypass()
+end)
+ASection22:addToggle("Gun Silencer", nil, function(x)   
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v ~= nil then
+            if v.Handle:FindFirstChild("ReloadSound") then
+                if v.Handle:FindFirstChild("GunEmpty") and x then                   
+                    v.Handle.Shot.Name = "" 
+                    v.Handle.GunEmpty.Name = "Shot"                                       
+                else
+                    v.Handle.Shot.Name = "GunEmpty" 
+                    v.Handle[""].Name = "Shot"                
+                end
+            else
+                return
+            end
+        end
+    end    
+end)
+ASection22:addToggle("Gun Sound Spam", nil, function(x)   
+    gunSoundSpam = x
+end)
+ASection22:addButton("Remove Flash / Smoke | FE", function()    
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v:FindFirstChild("Main") then
+            v.Main.MuzzleFlash:Destroy()
+            v.Main.Smoke:Destroy()
+        end
+    end
+end)
 
+PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
+    camera.FieldOfView = valuex
+end)
+PlrSection:addDropdown("Infinite Jump Mode", {"Fly", "Infinite", }, function(x)
+    jumpMode = x
+end)
+PlrSection:addToggle("Infinite Jump", nil, function(v)
+    infiniteJump = v
+end)   
+PlrSection:addToggle("Noclip", nil, function(v)
+    if v then
+        Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
+    else
+        Noclipping:Disconnect()
+    end
+end)
+local function disableStam(enabled)
+repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false       
+    for i,x in pairs(LPlayer.Character:GetChildren()) do
+        if x:IsA("LocalScript") and x.Name ~= "KeyDrawer" and x.Name ~= "Animate" and x.Name ~= "AnimationHandler" then 
+            if enabled then
+                x.Disabled = true
+            else
+                x.Disabled = false
+            end
+        end 
+    end 
+end
 
+PlrSection:addToggle("Infinite Stamina", nil, function(v)
+    infiniteStamina = v    
+    disableStam(v)
+end)
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    if infiniteStamina then    
+        wait(2)
+        disableStam(infiniteStamina)    
+    end
+end)
+PlrSection:addToggle("Air Swim", nil, function(v)
+    for i, v in next, getconnections(game:GetService("Workspace"):GetPropertyChangedSignal("Gravity")) do
+        v:Disable()
+    end
+    if v then
+        workspace.Gravity = 0
+        local function swimDied()
+            workspace.Gravity = 140            
+        end
+        gravReset = LPlayer.Character:FindFirstChildOfClass('Humanoid').Died:Connect(swimDied)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+        LPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+    else
+        workspace.Gravity = 140
+        if gravReset then
+            gravReset:Disconnect()
+        end
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+        LPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+        LPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+    end
+end)
+PlrSection:addToggle("Anti Car", nil, function(v)    
+    antiCar = v
+end)
+PlrSection:addToggle("Speed Bypass - (Dont walk into sharp terrain)", nil, function(v)    
+    speedBypass = v
+end)
+PlrSection:addToggle("Flight", nil, function(Fly_Switch)
+    if Fly_Switch then  
+        sFLY()
+    else
+    	NOFLY()
+    end
+end)
+PlrSectionC:addToggle("Crafter + Paramedic Auto-heal", nil, function(v)
+    AutoHeal = v
+end)
+PlrSectionC:addSlider("Min Health", 1, 0, 100, function(valuex)
+    minHealth = valuex
+end)
+PlrSectionC:addButton("Equip Armor - Helmet + Heavy Vest", function()
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer("Battle Helmet","Single",nil)
+    wait(.4)
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer("Heavy Vest","Single",nil)
+    wait(.3)
+    for i,v in pairs(LPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") and v.Name == "Heavy Vest" then 
+            LPlayer.Character.Humanoid:EquipTool(v)   
+            game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipArmor:FireServer()
+        end 
+        wait(.5)
+        if v:IsA("Tool") and v.Name == "Battle Helmet" then 
+            LPlayer.Character.Humanoid:EquipTool(v)
+            game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipArmor:FireServer() 
+        end                 
+    end
+    notify("Equiped armor")
+end)
+
+plrApp:addToggle("Outfit Editer", nil, function(v)
+    LPlayer.PlayerGui.AvatarEditor.Enabled = v
+end)
+plrApp:addDropdown("Presets", {"Black", "Glitch", "Black & White", "Hacker"}, function(t)
+    if t == "Black" then
+            game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6523367474)
+            game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",745499244)
+        else if t == "Glitch" then
+                game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6296322488)
+                game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6296389518)
+            else if t == "Hacker" then
+                game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",5594922955)
+                game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",6967030358)
+                else if t == "Black & White"  then
+                    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",4797295258)
+                    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("CustomCloth",4977671127)
+                    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",Color3.fromRGB(0,0,0),"SkinColor")
+                    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipAvatarItem:FireServer("Color",Color3.fromRGB(255, 255, 255),"HairColor")
+                end
+            end
+        end
+    end
+end)
+plrApp:addColorPicker("Skin Color", Color3.fromRGB(255, 255, 255), function(s)
+    game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer("Color",s,"SkinColor")
+end)
+plrApp:addColorPicker("Hair Color", Color3.fromRGB(255, 255, 255), function(s)
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").EquipAvatarItem:FireServer("Color",s,"HairColor")
+end)
+plrApp:addToggle("Rainbow Character", nil, function(v)
+    rainbow_char = v
+end)
+plrApp:addToggle("Rainbow Hair", nil, function(v)
+    rainbow_hair = v
+end)
+plrApp:addDropdown("Player Glitch", {"Small", "Larger", }, function(x)
+    local H = LPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+    if x == "Small" then
+        local function DeleteOriginal()
+            for i,v in pairs(LPlayer.Character:GetDescendants()) do
+                if v.Name == 'OriginalSize' then
+                    v:Destroy()
+                end           
+            end
+        end       
+        wait(.8)
+        DeleteOriginal()
+        H:FindFirstChild("BodyDepthScale"):Destroy()    
+        wait(.8)
+        DeleteOriginal()
+        H:FindFirstChild("BodyTypeScale"):Destroy()          
+        wait(.8) 
+        DeleteOriginal()
+        H:FindFirstChild("BodyProportionScale"):Destroy()   
+        wait(.8)
+        DeleteOriginal()
+        H:FindFirstChild("HeadScale"):Destroy() 
+        wait(.8)
+        DeleteOriginal()
+        H:FindFirstChild("BodyWidthScale"):Destroy()  
+    else
+        for i,v in pairs(LPlayer.Character.Humanoid:GetChildren()) do
+            if string.find(v.Name,"Scale") then        
+                v:Destroy()
+                wait(1)          
+            end
+        end        
+    end
+end)
 plrApp:addButton("Respawn" ,function() 
    game:GetService("ReplicatedStorage")["_CS.Events"].PayLoad:FireServer()
 end)

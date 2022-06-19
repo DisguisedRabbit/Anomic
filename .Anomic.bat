@@ -1,6 +1,6 @@
 -- // Old anomic gui not the best scripting ill admit, could use more optimising.
 
-local mainName = "Anomic V | 90210" 
+local mainName = "Anomic V" 
 if game:GetService("CoreGui"):FindFirstChild(mainName) then
     game.CoreGui[mainName]:Destroy()
 end
@@ -108,9 +108,6 @@ local mouse = LPlayer:GetMouse()
 local infiniteStamina = false
 local jumpMode = "Infinite"
 local infiniteJump = true
-local gunSoundSpam = false
-local shotgunMod1 = false
-local shotgunMod2 = false
 local Rmod = false
 local speedBypass = true
 local headHitboxSize = 10
@@ -137,8 +134,7 @@ print("Loading | 10%")
 function notify(title, message)game:GetService("Players").LocalPlayer.PlayerGui.Notify.TimePosition = 0 game:GetService("Players").LocalPlayer.PlayerGui.Notify.Playing = true if not message then require(game:GetService("ReplicatedStorage"):WaitForChild("Client").NotificationHandler):AddToStream(game.Players.LocalPlayer,title) else require(game:GetService("ReplicatedStorage"):WaitForChild("Client").NotificationHandler):AddToStream(game.Players.LocalPlayer,title..": "..message)end end
 function purchaseItem(name)game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(name,"Single",nil)end
 function Action(Object, Function)if Object ~= nil then Function(Object); end end
-function noclip() if LPlayer.Character ~= nil then for _,
- child in pairs(LPlayer.Character:GetDescendants()) do if child:IsA("BasePart") and child.CanCollide == true then child.CanCollide = false end end end end
+function noclip() if LPlayer.Character ~= nil then for _, child in pairs(LPlayer.Character:GetDescendants()) do if child:IsA("BasePart") and child.CanCollide == true then child.CanCollide = false end end end end
 local function bypass()
     repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false    
         for i, v in next, getconnections(game:GetService("Players").LocalPlayer.Character.DescendantAdded) do
@@ -539,23 +535,19 @@ print("Loading | 15%")
 ASection1:addToggle("Toggle Hitboxes", true, function(v)
     Hitboxes = v
 end)
-ASection1:addSlider("Hitbox Size", 10, 0, 1000, function(v)
-    
+ASection1:addSlider("Hitbox Size", 10, 0, 1000, function(v) 
     headHitboxSize = v
-
 end)
 ASection1:addButton("One Shot", function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/YourLocalAnomicPlayer/OneShot-Public/main/Script"), true))()
 end)
-
-
 
 PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
 
   
-PlrSection:addToggle("Noclip", true, function(v)
+PlrSection:addToggle("Noclip", nil, function(v)
     if v then
         Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
     else
@@ -725,15 +717,9 @@ print("Loading | 25%")
 -- ESP Page
 local backpackDisplay = true
 local playerNotify = true
-
-
 local maxDisance = 5000;
-
-
 wLighting.Brightness = 6
 wLighting.ExposureCompensation = .7
-
-
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
         if v:IsA("Model") and v.Name == "ToolModel" then
             local a = Instance.new("BoxHandleAdornment")
@@ -984,7 +970,6 @@ paintSection:addButton("Paint Item", function()
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
 end)
 
-
 local buyAmmoAmount = 1
 local ammoType = ""
 BuySectionAmmo:addDropdown("Ammo", {"9mm", "5.56", "12 Gauge", ".50", ".45 ACP", "5.7x28"}, function(valuex)
@@ -999,7 +984,6 @@ BuySectionAmmo:addButton("Buy ammo", function()
         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Single",nil)
     end
 end)
-
 
 function getCurrentVehicle()   
     if LPlayer.Character.Humanoid.SeatPart ~= nil then
@@ -1020,6 +1004,12 @@ miscSection:addButton("Reset to 50k", function()
     wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
 end)
+
+ccar = getCurrentVehicle()
+ccar.VehicleSeat.Gear.Value = -100
+ccar.VehicleSeat.Strength.Value = 1000
+ccar.VehicleSeat.Default.Value = 100000
+ccar.VehicleSeat.Speed.Value = 100
 
 miscSection:addButton("Bring all cars", function() 
     oldCFrame = LPlayer.Character.HumanoidRootPart.CFrame
