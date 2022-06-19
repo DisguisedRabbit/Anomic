@@ -1103,9 +1103,6 @@ function getCurrentVehicle()
         return LPlayer.Character.Humanoid.SeatPart.Parent        
     end   
 end
-miscSection:addToggle("Auto Store items", nil, function(state)
-    autoStore = state
-end)
 
 miscSection:addButton("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
@@ -1120,22 +1117,24 @@ miscSection:addButton("Reset cash to 50k", function()
     wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
 end)
-CarSection:addToggle("Max Speed", nil, function(state)
+miscSection:addToggle("Auto Store items", nil, function(state)
+    autoStore = state
+end)
+
     ccar = getCurrentVehicle()  
     if state then
         ccar.VehicleSeat.Gear.Value = -100
     else 
         ccar.VehicleSeat.Gear.Value = 2
     end
-end)
-CarSection:addSlider("Car Strength", 1, 0, 100, function(v)
+
+
     ccar = getCurrentVehicle()      
-    ccar.VehicleSeat.Strength.Value = v 
-end)
-CarSection:addSlider("Acceleration", 1, 0, 10000, function(v)
-    ccar = getCurrentVehicle()      
-    ccar.VehicleSeat.Default.Value = v 
-end)
+    ccar.VehicleSeat.Strength.Value = 100
+
+   
+    ccar.VehicleSeat.Default.Value = 25000
+
 CarSection:addButton("Spawn Held Car", function() 
     CSEvents.SpawnVehicle:FireServer(LPlayer.Character.HumanoidRootPart.CFrame, LPlayer.Character:FindFirstChildWhichIsA("Tool"));     
 end)
