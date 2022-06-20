@@ -999,8 +999,8 @@ paintSection:addButton("Paint JigglyPuff", function()
     for i,v in pairs(LPlayer.Character:GetChildren()) do
         if v:IsA("Tool") and v ~= nil then  
             currentTool = v
-            color1 = Color3.fromRGB(232,126,232)
-            color2 = Color3.fromRGB(226,102,226)
+            color1 = Color3.fromRGB(248,158,252)
+            color2 = Color3.fromRGB(223,120,214)
         end
     end
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
