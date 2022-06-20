@@ -108,7 +108,6 @@ local mouse = LPlayer:GetMouse()
 local infiniteStamina = false
 local jumpMode = "Infinite"
 local infiniteJump = true
-local NOclip = true
 local Rmod = false
 local speedBypass = true
 local headHitboxSize = 10
