@@ -1,7 +1,15 @@
-1. Get InfiniteStamina to auto run
-2. Get NoClip to auto run
-3. Make Keybinds invisible
-4. Look Into Auto 50k reset donator (separate script)
+1. Look Into Auto 50k reset donator (separate script)
+2. Get InfiniteStamina to auto run
+3. Get NoClip to auto run
+4. Make Keybinds invisible 
 5. Look into printer glitching
 6. find other game assets
-8. see if buying ammo can surpase the purchase price (similar to painting tools)
+7. see if buying ammo can surpase the purchase price (similar to painting tools)
+
+PlrSection:addToggle("Noclip", nil, function(v)
+    if v then
+        Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
+    else
+        Noclipping:Disconnect()
+    end
+end)
