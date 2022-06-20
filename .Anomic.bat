@@ -969,10 +969,10 @@ LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(451.888794, -8.47341156, 
 local currentTool = nil 
 local color1 = Color3.fromRGB(0,255,0)
 local color2 = Color3.fromRGB(140,0,255)
-paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,255,0), function(c)
+paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,0,0), function(c)
     color1 = c
 end)
-paintSection:addColorPicker("Secondary Color", Color3.fromRGB(140,0,255), function(c)
+paintSection:addColorPicker("Secondary Color", Color3.fromRGB(0,0,0), function(c)
     color2 = c
 end)
 paintSection:addButton("Paint Item", function()
@@ -992,14 +992,20 @@ paintSection:addButton("Paint Joker", function()
         end
     end
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+    color1 = Color3.fromRGB(0,0,0)
+    color2 = Color3.fromRGB(0,0,0)
 end)
 paintSection:addButton("Paint JigglyPuff", function()
     for i,v in pairs(LPlayer.Character:GetChildren()) do
         if v:IsA("Tool") and v ~= nil then  
             currentTool = v
+            color1 = Color3.fromRGB(232,126,232)
+            color2 = Color3.fromRGB(226,102,226)
         end
     end
     game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+    color1 = Color3.fromRGB(0,0,0)
+    color2 = Color3.fromRGB(0,0,0)
 end)
 
 
