@@ -967,8 +967,8 @@ LPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(451.888794, -8.47341156, 
 
 -- Buy Page
 local currentTool = nil 
-local color1 = Color3.fromRGB(0,255,0)
-local color2 = Color3.fromRGB(140,0,255)
+local color1 = Color3.fromRGB(0,0,0)
+local color2 = Color3.fromRGB(0,0,0)
 paintSection:addColorPicker("Primary Color", Color3.fromRGB(0,0,0), function(c)
     color1 = c
 end)
