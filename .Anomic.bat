@@ -108,9 +108,7 @@ local mouse = LPlayer:GetMouse()
 local infiniteStamina = false
 local jumpMode = "Infinite"
 local infiniteJump = true
-local gunSoundSpam = false
-local shotgunMod1 = false
-local shotgunMod2 = false
+local NOclip = true
 local Rmod = false
 local speedBypass = true
 local headHitboxSize = 10
@@ -553,9 +551,9 @@ end)
 PlrSection:addSlider("Player Fov", 50, 0, 120, function(valuex)
     camera.FieldOfView = valuex
 end)
-
-Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
-end
+if NOclip = true then(
+game:GetService('RunService').Stepped:Connect(noclip)
+end)
 
 local function disableStam(enabled)
 repeat wait() until LPlayer.Character.HumanoidRootPart.Anchored == false       
