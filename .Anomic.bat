@@ -771,9 +771,9 @@ end)
 specificSection:addButton("Reset Camera", function()    
     workspace.Camera.CameraSubject = LPlayer.Character.Humanoid       
 end)
-specificSection:addToggle("Highlight Targtet", nil, function(x)   
+specificSection:addToggle("Highlight Target", nil, function(x)   
     targetHighlight = x
-end)
+end)    
 specificSection:addButton("Get Backpack items", function()    
     for i,v in pairs(Players:GetChildren()) do
         if v.Name:match(targetName) then
@@ -976,6 +976,24 @@ paintSection:addColorPicker("Secondary Color", Color3.fromRGB(140,0,255), functi
     color2 = c
 end)
 paintSection:addButton("Paint Item", function()
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v ~= nil then  
+            currentTool = v
+        end
+    end
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+end)
+paintSection:addButton("Paint Joker", function()
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v ~= nil then  
+            currentTool = v
+            color1 = Color3.fromRGB(0,255,0)
+            color2 = Color3.fromRGB(140,0,255)
+        end
+    end
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+end)
+paintSection:addButton("Paint JigglyPuff", function()
     for i,v in pairs(LPlayer.Character:GetChildren()) do
         if v:IsA("Tool") and v ~= nil then  
             currentTool = v
