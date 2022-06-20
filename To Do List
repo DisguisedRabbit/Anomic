@@ -6,10 +6,3 @@
 6. find other game assets
 7. see if buying ammo can surpase the purchase price (similar to painting tools)
 
-PlrSection:addToggle("Noclip", nil, function(v)
-    if v then
-        Noclipping = game:GetService('RunService').Stepped:Connect(noclip)
-    else
-        Noclipping:Disconnect()
-    end
-end)
