@@ -1020,7 +1020,7 @@ end)
 BuySectionAmmo:addButton("Buy ammo", function()
     for i = 1, buyAmmoAmount, 1 do
         wait(.1)   
-        game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Double",nil)
+        game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PurchaseTeamItem:FireServer(ammoType,"Single",true)
     end
 end)
 
