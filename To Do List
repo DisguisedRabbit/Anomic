@@ -1,4 +1,4 @@
-1. Look into auto 50k reset donator (separate script)
+1. Look into auto 50k reset donator (separate script) DONE
 2. Get InfiniteStamina to auto run
 3. Get NoClip to auto run
 4. Make Keybinds invisible 
@@ -10,7 +10,7 @@ Organized by doablility
 
 
 for i,v in pairs(game:service'Players':GetPlayers()) do
-    if v.Name:match("kreechaa") then  
+    if v.Name:match("(change to player name)") then  
          game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
      end
     end
