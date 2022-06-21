@@ -8,14 +8,13 @@
 
 Organized by doablility
 
-for i, in pairs(game:service'Players':GetPlayers()) do
-	if v.name:match(targetName) then
-		game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)
-	end
-end
+
+ if 1 ==1 then
+game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(engineer,50000)
+ end
 wait(1)
-or i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
+for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
         game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
-    end
-    wait(.2)
+		end
+   wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
