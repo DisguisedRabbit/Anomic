@@ -9,12 +9,15 @@
 Organized by doablility
 
 
- if 1 ==1 then
-game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(engineer,50000)
- end
+for i,v in pairs(game:service'Players':GetPlayers()) do
+    if v.Name:match("kreechaa") then  
+         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
+     end
+    end
 wait(1)
 for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
         game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
 		end
    wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
+
