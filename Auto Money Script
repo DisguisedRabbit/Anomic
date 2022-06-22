@@ -1,14 +1,3 @@
-1. Look into auto 50k reset donator (separate script) DONE
-2. Get InfiniteStamina to auto run
-3. Get NoClip to auto run
-4. Make Keybinds invisible 
-5. Find other game assets 
-6. See if buying ammo can surpase the purchase price (similar to painting tools)
-7. Look into printer glitching
-
-Organized by doablility
-
-
 for i,v in pairs(game:service'Players':GetPlayers()) do
     if v.Name:match("(change to player name)") then  
          game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
@@ -20,4 +9,3 @@ for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
 		end
    wait(.2)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
-
