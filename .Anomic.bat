@@ -92,8 +92,8 @@ local esp_boxes        = false
 local esp_tracers      = false
 local esp_tracer_orig  = "Bottom"
 local esp_Main_Colour  = Color3.fromRGB(255, 255, 255)
-local rainbow_char     = true
-local rainbow_hair     = true
+local rainbow_char     = false
+local rainbow_hair     = false
 -- Player
 local CSEvents = game:GetService("ReplicatedStorage"):WaitForChild("_CS.Events")
 local teamList = require(game:GetService("ReplicatedStorage").Client.TeamList)
