@@ -1,5 +1,6 @@
+local giveTo Player = "PlayerName"
 for i,v in pairs(game:service'Players':GetPlayers()) do
-    if v.Name:match("(change to player name)") then  
+    if v.Name:match(giveToPlayer) then  
          game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
      end
     end
@@ -9,4 +10,4 @@ for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
 	game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
 		end
    wait(.1)
-    game:GetService("TeleportService"):Teleport(game.PlaceId)
+ game:GetService("TeleportService"):Teleport(game.PlaceId)
