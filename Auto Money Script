@@ -1,4 +1,4 @@
-local giveTo Player = "PlayerName"
+local giveToPlayer = "PlayerName"
 for i,v in pairs(game:service'Players':GetPlayers()) do
     if v.Name:match(giveToPlayer) then  
          game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
