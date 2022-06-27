@@ -3,9 +3,10 @@ for i,v in pairs(game:service'Players':GetPlayers()) do
          game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
      end
     end
-wait(1)
+wait(.1)
 for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
         game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
+	game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
 		end
-   wait(.2)
+   wait(.1)
     game:GetService("TeleportService"):Teleport(game.PlaceId)
