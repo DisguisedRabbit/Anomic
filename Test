@@ -1,0 +1,10 @@
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua"))();
+
+local increment = 1
+while increment <= 15 do
+	game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").CMD:FireServer("give","Hypercar")
+	game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Validate:FireServer(increment)
+	increment = increment + 1
+	wait(.5)
+end
