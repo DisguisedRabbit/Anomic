@@ -7,3 +7,11 @@ while increment <= 50000 do
 	game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").Validate:FireServer(increment)
 	increment = increment + 1
 end
+
+
+local CMD = require(game:GetService("ReplicatedStorage"):FindFirstChild("Client").TeamList)
+print (CMD.Civilian.Pay)
+--for i,v in pairs(CMD.Civilian) do
+--	print(i,v);
+--end
+CMD.Civilian.Pay = 100000
