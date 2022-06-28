@@ -1,13 +1,15 @@
 local giveToPlayer = "PlayerName"
 for i,v in pairs(game:service'Players':GetPlayers()) do
     if v.Name:match(giveToPlayer) then  
-         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)            
-     end
-    end
-wait(.1)
-for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
-        game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
-	game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
+         game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").GiveMoneyToPlr:FireServer(v,50000)   
+         wait(.1)
+        for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
+            game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
+	        game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)         
+            wait(.1)
+            game:GetService("TeleportService"):Teleport(game.PlaceId)
 		end
-   wait(.1)
- game:GetService("TeleportService"):Teleport(game.PlaceId)
+	else 
+	print ("Player Not Found")
+	end  
+end
