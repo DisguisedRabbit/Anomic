@@ -1004,7 +1004,18 @@ paintSection:addButton("Paint JigglyPuff", function()
     color1 = Color3.fromRGB(0,0,0)
     color2 = Color3.fromRGB(0,0,0)
 end)
-
+paintSection:addButton("Paint SpiderMan", function()
+    for i,v in pairs(LPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v ~= nil then  
+            currentTool = v
+            color1 = Color3.fromRGB(0,0,255)
+            color2 = Color3.fromRGB(255,0,0)
+        end
+    end
+    game:GetService("ReplicatedStorage"):FindFirstChild("_CS.Events").PaintTool:FireServer(currentTool,color1,color2)
+    color1 = Color3.fromRGB(0,0,0)
+    color2 = Color3.fromRGB(0,0,0)
+end)
 
 local buyAmmoAmount = 1
 local ammoType = ""
