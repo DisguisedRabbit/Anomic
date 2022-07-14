@@ -715,9 +715,16 @@ playerNotify(true);
 local maxDisance = 5000;
 
 
-wLighting.Brightness = 6
-wLighting.ExposureCompensation = .7
-
+game:GetService("Lighting").Brightness = 2
+game:GetService("Lighting").ClockTime = 1
+game:GetService("Lighting").FogEnd = 100000
+game:GetService("Lighting").GlobalShadows = false
+game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+game:GetService("Lighting").ColorCorrection.Enabled = false
+game:GetService("Lighting").BlackFade.Enabled = false
+game:GetService("Lighting").Atmosphere:Destroy()
+game:GetService("Lighting").DefaultSky:Destroy()
+    
 
     for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
         if v:IsA("Model") and v.Name == "ToolModel" then
