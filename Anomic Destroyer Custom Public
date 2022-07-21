@@ -591,11 +591,11 @@ UIS.InputBegan:Connect(function(input, gameProcessedEvent)
 	end
 end) 
 --Map Shit
-	-- for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap:GetChildren()) do
-	-- 	if v.Name == "LocationSpot" then
-	-- 		game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap.LocationSpot:Destroy()
-	-- 	end
-	-- end
+	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap:GetChildren()) do
+		if v.Name == "LocationSpot" then
+			game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap.LocationSpot:Destroy()
+		end
+	end
 	for i ,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap.Locations:GetChildren()) do
 		if v.Name == "MainTownMarker" then
 			if v.Text == "ARWAY" then
