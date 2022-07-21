@@ -723,6 +723,9 @@ Movement:addToggle("Speed Bypass", nil, function(v)
     speedBypass = v
 end)
 local targetHighlight = false
+esp_distance = false
+esp_Names = true
+maxDistance = 10000
 game:GetService("RunService").RenderStepped:connect(function()              
         for _,v in pairs(Players:GetChildren()) do
             if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Humanoid").Health > 0 and v ~= LPlayer then
@@ -730,7 +733,7 @@ game:GetService("RunService").RenderStepped:connect(function()
             local distance = LPlayer:DistanceFromCharacter(v.Character.HumanoidRootPart.Position)
             local Vec ,b=game.Workspace.CurrentCamera:WorldToViewportPoint(part.Position)
                 if b then
-                    if esp_Names and distance < 5000 and distance > 7 then
+                    if esp_Names and distance < maxDistance and distance > 7 then
                         local a=Drawing.new("Text")
                         if esp_distance then                
                            a.Text = v.Name .. " [" .. math.ceil(distance) .. "]"
@@ -744,7 +747,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                         a.Font=Drawing.Fonts.UI
                         a.Visible=true
                         a.Transparency=1
-                        a.Color=esp_Main_Colour
+                        a.Color = Color3.fromRGB(255, 255, 255)
                         a.Position=Vector2.new(
                             game.Workspace.CurrentCamera:WorldToViewportPoint(part.CFrame.Position+part.CFrame.UpVector*(3+(part.Position-game.Workspace.CurrentCamera.CFrame.Position).Magnitude/25)).X,
                             game.Workspace.CurrentCamera:WorldToViewportPoint(part.CFrame.Position+part.CFrame.UpVector*(3+(part.Position-game.Workspace.CurrentCamera.CFrame.Position).Magnitude/40)).Y)
