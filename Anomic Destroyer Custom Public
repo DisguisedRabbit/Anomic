@@ -1,4 +1,3 @@
---Based on H4#0321 or HELLLO1073
 mainName = "Anomic Destroyer"
 if game:GetService("CoreGui"):FindFirstChild(mainName) then
     game.CoreGui[mainName]:Destroy()
@@ -563,7 +562,6 @@ UIS.InputEnded:connect(function(key)
 end)
 UIS.InputBegan:connect(function(key)
     if key.KeyCode == Enum.KeyCode.M then
-        LPlayer.PlayerGui.MainUIHolder.GameMap.BackgroundTransparency = 1
 		LPlayer.PlayerGui.MainUIHolder.GameMap.Visible = true
     end
 end)
@@ -591,6 +589,7 @@ UIS.InputBegan:Connect(function(input, gameProcessedEvent)
 	end
 end) 
 --Map Shit
+	LPlayer.PlayerGui.MainUIHolder.GameMap.BackgroundTransparency = 1
 	for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap:GetChildren()) do
 		if v.Name == "LocationSpot" then
 			game:GetService("Players").LocalPlayer.PlayerGui.MainUIHolder.GameMap.LocationSpot:Destroy()
